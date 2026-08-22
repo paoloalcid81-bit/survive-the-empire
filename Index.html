@@ -1,0 +1,851 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survive the Empire: Spanish Colonial Life</title>
+    <style>
+        :root {
+            --parchment: #f9f4e8;
+            --parchment-dark: #eee3cb;
+            --ink: #2b2118;
+            --blood: #8b1e1e;
+            --gold: #b38b32;
+            --green: #2e7d32;
+            --border: #523f2f;
+            --fb: #1877f2;
+            --x: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: transparent;
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0.5rem;
+        }
+
+        #game-wrapper {
+            background-color: var(--parchment);
+            width: 100%;
+            max-width: 580px;
+            border: 3px double var(--border);
+            border-radius: 4px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            padding: 2.2rem 1.1rem 1.25rem 1.1rem;
+            position: relative;
+            text-align: center;
+        }
+
+        #game-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px solid var(--border);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .top-nav-btn {
+            position: absolute;
+            top: 10px;
+            background: var(--parchment);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            font-family: 'Georgia', serif;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.45rem;
+            border-radius: 3px;
+            cursor: pointer;
+            opacity: 0.85;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            z-index: 2;
+        }
+
+        .top-nav-btn:hover {
+            opacity: 1;
+            background: var(--parchment-dark);
+        }
+
+        .home-btn { left: 10px; }
+        .music-btn { right: 10px; }
+
+        .home-icon-svg {
+            width: 11px;
+            height: 11px;
+            fill: currentColor;
+        }
+
+        .header-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: bold;
+            margin-top: 0.35rem;
+            margin-bottom: 0.25rem;
+        }
+
+        h1.title {
+            font-size: 1.1rem;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.45rem;
+            line-height: 1.3;
+        }
+
+        .intro-box {
+            padding: 0.25rem;
+        }
+
+        .intro-lore {
+            font-size: 0.92rem;
+            line-height: 1.55;
+            margin: 0.85rem 0 1.15rem 0;
+            text-align: left;
+            background: rgba(238, 227, 203, 0.45);
+            padding: 0.9rem;
+            border-left: 3px solid var(--gold);
+            border-radius: 2px;
+        }
+
+        .intro-challenge {
+            text-align: center;
+            font-size: 0.98rem;
+            font-weight: bold;
+            color: var(--blood);
+            margin-top: 0.9rem;
+            display: block;
+        }
+
+        .era-header {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #523f2f;
+            margin-top: 0.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .day-counter-box {
+            margin: 0.25rem 0 0.75rem 0;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .day-counter-box.ding-green {
+            color: var(--green);
+            transform: scale(1.08);
+        }
+
+        .divider {
+            border-bottom: 1px dashed var(--border);
+            margin-bottom: 0.9rem;
+        }
+
+        .scenario-box {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0.5rem 0 1.15rem 0;
+            text-align: left;
+            background: rgba(238, 227, 203, 0.45);
+            padding: 0.85rem;
+            border-left: 3px solid var(--border);
+            border-radius: 2px;
+        }
+
+        .choices-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 0.85rem;
+        }
+
+        button.choice-btn {
+            background-color: var(--parchment-dark);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            padding: 0.75rem 0.85rem;
+            font-family: 'Georgia', serif;
+            font-size: 0.88rem;
+            line-height: 1.35;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s ease-in-out;
+            box-shadow: 1px 1px 0px rgba(82, 63, 47, 0.2);
+        }
+
+        button.choice-btn:hover {
+            background-color: var(--border);
+            color: var(--parchment);
+        }
+
+        button.choice-btn.correct-glow {
+            background-color: var(--green) !important;
+            color: #ffffff !important;
+            border-color: #1b5e20 !important;
+        }
+
+        .death-screen {
+            border: 2px solid var(--blood);
+            background: #fff8f8;
+            padding: 1.15rem 0.9rem;
+            margin: 0.75rem 0;
+            border-radius: 4px;
+        }
+
+        .death-title {
+            color: var(--blood);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.35rem;
+            font-weight: bold;
+        }
+
+        .death-reason {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin: 0.75rem 0;
+            color: #4a1111;
+            text-align: left;
+        }
+
+        .history-note {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #555;
+            border-top: 1px solid #ddd;
+            padding-top: 0.65rem;
+            margin-top: 0.75rem;
+            text-align: left;
+            line-height: 1.45;
+        }
+
+        .action-btn {
+            background-color: var(--blood);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.6rem;
+            font-family: 'Georgia', serif;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-top: 0.75rem;
+            box-shadow: 0 4px 10px rgba(139, 30, 30, 0.25);
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover { opacity: 0.9; }
+
+        .footer-share-section {
+            margin-top: 1rem;
+            border-top: 1px dashed var(--border);
+            padding-top: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            font-size: 0.78rem;
+            color: #523f2f;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.75rem;
+            font-family: 'Georgia', serif;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .share-fb { background-color: var(--fb); }
+        .share-x { background-color: var(--x); }
+        .share-copy { background-color: var(--border); }
+    </style>
+</head>
+<body>
+
+<div id="game-wrapper">
+    <button class="top-nav-btn home-btn" onclick="goHome()" title="Return to Intro">
+        <svg class="home-icon-svg" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span>Home</span>
+    </button>
+
+    <button class="top-nav-btn music-btn" id="music-toggle" onclick="toggleBGM()">Music: OFF</button>
+
+    <div class="header-tag">Survive the Empire</div>
+    <h1 class="title">Can You Survive Spanish Colonial Life?</h1>
+    
+    <div id="game-content"></div>
+
+    <div class="footer-share-section">
+        <span>Share:</span>
+        <button class="share-btn share-fb" onclick="shareFacebook()">Facebook</button>
+        <button class="share-btn share-x" onclick="shareX()">X / Twitter</button>
+        <button class="share-btn share-copy" onclick="copyGameLink()">Copy Link</button>
+    </div>
+</div>
+
+<script>
+    let audioCtx = null;
+    let isBgmPlaying = false;
+    let bgmInterval = null;
+
+    function initAudioContext() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    const bgmScale = [220, 261.63, 329.63, 392.00, 440, 523.25, 392.00, 329.63];
+    let bgmStep = 0;
+
+    function playHarpsichordPluck(freq) {
+        if (!audioCtx || !isBgmPlaying) return;
+        try {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = "triangle";
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.9);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.9);
+        } catch (e) {}
+    }
+
+    function startBGM() {
+        initAudioContext();
+        if (isBgmPlaying) return;
+        isBgmPlaying = true;
+        document.getElementById('music-toggle').innerText = "Music: ON";
+        bgmInterval = setInterval(() => {
+            if (isBgmPlaying) {
+                playHarpsichordPluck(bgmScale[bgmStep]);
+                bgmStep = (bgmStep + 1) % bgmScale.length;
+            }
+        }, 550);
+    }
+
+    function stopBGM() {
+        isBgmPlaying = false;
+        if (bgmInterval) clearInterval(bgmInterval);
+        document.getElementById('music-toggle').innerText = "Music: OFF";
+    }
+
+    function toggleBGM() {
+        if (isBgmPlaying) stopBGM();
+        else startBGM();
+    }
+
+    function playDing() {
+        if (!audioCtx) return;
+        try {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(880.00, audioCtx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.6);
+        } catch (e) {}
+    }
+
+    function playDeathSound() {
+        if (!audioCtx) return;
+        try {
+            const osc1 = audioCtx.createOscillator();
+            const gain1 = audioCtx.createGain();
+            osc1.type = "sawtooth";
+            osc1.frequency.setValueAtTime(160, audioCtx.currentTime);
+            osc1.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 1.8);
+            gain1.gain.setValueAtTime(0.35, audioCtx.currentTime);
+            gain1.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.8);
+            osc1.connect(gain1);
+            gain1.connect(audioCtx.destination);
+            osc1.start();
+            osc1.stop(audioCtx.currentTime + 1.8);
+
+            const osc2 = audioCtx.createOscillator();
+            const gain2 = audioCtx.createGain();
+            osc2.type = "triangle";
+            osc2.frequency.setValueAtTime(115, audioCtx.currentTime);
+            osc2.frequency.exponentialRampToValueAtTime(28, audioCtx.currentTime + 1.8);
+            gain2.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gain2.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.8);
+            osc2.connect(gain2);
+            gain2.connect(audioCtx.destination);
+            osc2.start();
+            osc2.stop(audioCtx.currentTime + 1.8);
+        } catch (e) {}
+    }
+
+    function playVictoryFanfare() {
+        if (!audioCtx) return;
+        try {
+            const notes = [
+                { f: 523.25, time: 0.0, dur: 0.15 },
+                { f: 659.25, time: 0.18, dur: 0.15 },
+                { f: 783.99, time: 0.36, dur: 0.15 },
+                { f: 1046.50, time: 0.54, dur: 0.60 }
+            ];
+            notes.forEach(note => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = "triangle";
+                osc.frequency.setValueAtTime(note.f, audioCtx.currentTime + note.time);
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime + note.time);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + note.time + note.dur);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(audioCtx.currentTime + note.time);
+                osc.stop(audioCtx.currentTime + note.time + note.dur);
+            });
+        } catch (e) {}
+    }
+
+    const defaultQuestionPool = [
+        {
+            era: "1884 - Pueblo Streets",
+            scenario: "The Guardia Civil stops you at dusk outside the town plaza and demands identification. What do you present?",
+            choices: [
+                { text: "Present your Cédula Personal tax certificate", result: "SURVIVE" },
+                { text: "Offer a handwritten letter of passage from your cousin", result: "DIED: Branded a vagamundo (vagrant). Dragged to the provincial stockade where you perish of cholera." },
+                { text: "Hand over an uninspected foreign gold coin", result: "DIED: Arrested on the spot for smuggling unauthorized foreign bullion; summarily executed for treason." }
+            ],
+            history: "The 1884 Royal Decree replaced the archaic tribute system with the mandatory Cédula Personal identity tax certificate."
+        },
+        {
+            era: "1875 - Church Plaza",
+            scenario: "The church bell rings the 8:00 PM De Profundis (Campanadas de Ánimas). What must you immediately do?",
+            choices: [
+                { text: "Stop walking, remove your salakot, and recite a prayer for the dead", result: "SURVIVE" },
+                { text: "Dash quickly into the nearest tavern for an evening drink", result: "DIED: The alguaciles catch you ignoring sacred rites. You receive 50 public lashes and succumb to your wounds." },
+                { text: "Whistle a lively folk tune to keep your walking pace", result: "DIED: Branded a public blasphemer and turned over to ecclesiastical authorities for severe corporal penance." }
+            ],
+            history: "Evening bell rites were strictly enforced by colonial parishes; failure to show public piety was treated as open sacrilege."
+        },
+        {
+            era: "1849 - Municipal Tribunal",
+            scenario: "Governor-General Narciso Clavería issues his naming decree. The Cabeza de Barangay hands you the Catálogo. What is your move?",
+            choices: [
+                { text: "Select an assigned surname from the Catálogo for your household", result: "SURVIVE" },
+                { text: "Adopt the noble surname of the Governor-General without permission", result: "DIED: Usurping noble Castilian names without proven lineage lands you in penal exile to the Marianas." },
+                { text: "Refuse to pick a surname and declare sovereign independence", result: "DIED: Summary execution via garrote for open defiance against the Royal Audiencia." }
+            ],
+            history: "The 1849 Clavería Decree standardized native and colonial tax registries using the Catálogo Alfabético de Apellidos."
+        },
+        {
+            era: "1860 - Mountain Logging Camp",
+            scenario: "You are drafted for 40 days of compulsory polo y servicios labor. You could not afford the falla exemption tax. What is your assigned task?",
+            choices: [
+                { text: "Cut molave and mahogany timber in the mountains for shipyards", result: "SURVIVE" },
+                { text: "Demand to serve as an administrative clerk at the Real Audiencia", result: "DIED: Insubordination! You are tied to the whipping post and beaten by the colonial overseer." },
+                { text: "Attempt to flee into the deep cordilleras", result: "DIED: You are tracked down by cuadrilleros and shot as a runaway polista." }
+            ],
+            history: "Polistas were required to provide arduous public labor primarily in timber felling, church building, and infrastructure works."
+        },
+        {
+            era: "1892 - Manila Port Customs",
+            scenario: "Colonial customs officers board your inter-island brigantine in Manila Bay searching for contraband. What must you conceal at all costs?",
+            choices: [
+                { text: "Banned copies of José Rizal's Noli Me Tángere and La Solidaridad", result: "SURVIVE" },
+                { text: "A crate of registered dried fish with official municipal tax stamps", result: "DIED: You hid the fish but left subversive political pamphlets on deck. Executed at Bagumbayan." },
+                { text: "A devotional rosary and a Tagalog prayer booklet", result: "DIED: You hid the prayer book while the inspector found anti-friar manifestos tucked in your belt. Arrested for filibusterismo." }
+            ],
+            history: "Possessing or circulating banned nationalist reform literature in the 1890s was treated as capital treason."
+        },
+        {
+            era: "1878 - Calle Real",
+            scenario: "A Spanish Peninsular official rides past on horseback along the cobblestone highway. What is your required reaction?",
+            choices: [
+                { text: "Step aside, take off your headwear, and bow respectfully until he passes", result: "SURVIVE" },
+                { text: "Wave enthusiastically and shout a casual greeting in Spanish", result: "DIED: Flogged for insolence and lack of deference to colonial authorities." },
+                { text: "Continue walking down the center of the road ignoring him", result: "DIED: Struck down by the carriage escort and jailed for public disrespect to the Crown." }
+            ],
+            history: "Strict racial and sumptuary codes required indios and mestizos to show overt deference to Spanish peninsulares in public."
+        },
+        {
+            era: "1882 - Town Parish Church",
+            scenario: "It is Ash Wednesday and the parish priest is administering ashes. You arrived late after working the field. What do you do?",
+            choices: [
+                { text: "Kneel at the rear of the nave and wait humbly for the friar's instruction", result: "SURVIVE" },
+                { text: "Bargain with the sacristan to slip you consecrated host early", result: "DIED: Accused of sacrilege and witchcraft. Handed over to the Inquisition tribunal." },
+                { text: "Leave early without receiving ashes to catch the municipal cockfight", result: "DIED: Denounced from the pulpit as an apostate; sentenced to 30 days in the municipal stocks." }
+            ],
+            history: "Religious non-conformity or perceived disrespect toward parish sacraments carried immediate criminal and ecclesiastical penalties."
+        },
+        {
+            era: "1855 - Tabacalera Warehouse",
+            scenario: "You are a tenant farmer delivering your harvest under the Spanish Tobacco Monopoly. The inspector claims your leaves are second-grade. What must you do?",
+            choices: [
+                { text: "Accept the graded valuation and take the issued municipal payment voucher (papeleta)", result: "SURVIVE" },
+                { text: "Smuggle the rejected tobacco leaves into town to sell privately", result: "DIED: Caught by the Carabineros de Hacienda. Summary hanging for illicit tobacco contraband." },
+                { text: "Threaten the colonial inspector with your bolo knife", result: "DIED: Shot immediately by the tobacco warehouse garrison for armed rebellion." }
+            ],
+            history: "The Tobacco Monopoly (1782–1882) strictly prohibited private curing, selling, or hoarding of tobacco."
+        },
+        {
+            era: "1865 - Provincial Boundary",
+            scenario: "You are traveling between provinces to sell pottery. The Guardia Civil post demands your travel credentials. What document is required?",
+            choices: [
+                { text: "Your Pasaporte de Interior (domestic internal travel passport)", result: "SURVIVE" },
+                { text: "A verbal promise that your parish friar knows your character", result: "DIED: Detained as an unregistered vagrant and assigned to two years of unpaid penal labor." },
+                { text: "A drawing of your ancestral home", result: "DIED: Ridiculed and jailed indefinitely as an undocumented trespasser." }
+            ],
+            history: "Inter-provincial movement within the archipelago required stamped internal passports to prevent peasant flight."
+        },
+        {
+            era: "1870 - Governor's Residence",
+            scenario: "You are summoned to the Casa Real as a town cabeza. How must your Barong Tagalog be worn according to colonial decree?",
+            choices: [
+                { text: "Worn untucked with no pockets and made of translucent piña or sinamay", result: "SURVIVE" },
+                { text: "Tucked securely inside your trousers with a leather belt and hidden inner coat", result: "DIED: Accused of concealing weapons and imitating Spanish nobility. Imprisoned for sumptuary defiance." },
+                { text: "Draped in a military-style cape with gold epaulets", result: "DIED: Arrested for treasonous impersonation of a colonial officer of the King." }
+            ],
+            history: "Spanish sumptuary laws required native Filipinos to wear untucked collarless shirts without pockets to prevent concealed weapons."
+        },
+        {
+            era: "1885 - Parish Rectory",
+            scenario: "The local curate demands the collection of the Sanctorum and Diezmos Prediales taxes from your farm harvest. What is the lawful response?",
+            choices: [
+                { text: "Pay the required tithes and ensure the payment is recorded in the parish padrón", result: "SURVIVE" },
+                { text: "Tell the friar the church has plenty of wealth from friar estates", result: "DIED: Branded a filibustero and excommunicated; seized by civil guards and exiled to Jolo." },
+                { text: "Pay half and claim the other half was eaten by locusts with no proof", result: "DIED: Accused of defrauding the Holy Mother Church; sentenced to public flogging at the tribunal." }
+            ],
+            history: "Failure to pay ecclesiastical tithes led to immediate charges of heresy or civil debt imprisonment."
+        },
+        {
+            era: "1896 - Manila Outskirts",
+            scenario: "You hear whispering about secret meetings involving blood compacts and Katipunan triangles. What must you avoid doing at night?",
+            choices: [
+                { text: "Wandering into bamboo groves after the municipal curfew drum", result: "SURVIVE" },
+                { text: "Asking your parish priest if the rumors of revolution are true", result: "DIED: The friar alerts the Guardia Civil; you are tortured in Fort Santiago as a suspected conspirator." },
+                { text: "Carrying an unregistered bolo and an inkpot near military barracks", result: "DIED: Mistaken for an armed insurgent courier and executed on the spot without trial." }
+            ],
+            history: "During the 1896 revolutionary crisis, martial law made nocturnal movement near garrisons grounds for summary execution."
+        },
+        {
+            era: "1882 - Manila Cholera Outbreak",
+            scenario: "The Great Cholera Epidemic sweeps Luzon. Colonial quarantine guards cordon off your neighborhood. What is the safest survival choice?",
+            choices: [
+                { text: "Remain inside quarters and respect quarantine flags", result: "SURVIVE" },
+                { text: "Attend a healing novena at the paseo", result: "DIED: You mingle with infected crowds in the open promenade; contract acute cholera and perish within 24 hours." },
+                { text: "Clean the house and dump contaminated wash water at the closest stream", result: "DIED: Sanitary inspectors catch you polluting the public water source; arrested on the spot and bayoneted by quarantine sentries." }
+            ],
+            history: "During the 1882 cholera outbreak, colonial health boards strictly enforced localized cordons; public gatherings and improper waste disposal carried fatal risks."
+        },
+        {
+            era: "1840 - Town Tribunal",
+            scenario: "You are eligible to pay the annual Tributo. You lack silver pesos but possess produce. What acceptable tribute in kind can you surrender?",
+            choices: [
+                { text: "Standard measures of unhusked palay (rice) or bundles of abaca fiber", result: "SURVIVE" },
+                { text: "Handmade wooden toy carvings of Spanish galleons", result: "DIED: Goods rejected; livestock seized; jailed for tax evasion." },
+                { text: "Foreign banknotes from British merchant houses in Hong Kong", result: "DIED: Suspected of illegal foreign trade; arrested for contraband." }
+            ],
+            history: "The colonial tribute system strictly regulated acceptable goods in kind, restricting them to staple commodities like unhusked rice and abaca."
+        },
+        {
+            era: "1880 - Post-Earthquake Manila / Pueblo Outskirts",
+            scenario: "Following severe earthquakes, you are constructing a bahay na bato. How do you structure the building to satisfy colonial building codes and survive tremors?",
+            choices: [
+                { text: "Build a flexible heavy-timber frame on the upper floor resting on a ground-floor stone base", result: "SURVIVE" },
+                { text: "Build pure, unreinforced solid stone walls all the way up to the roof tiles like a medieval castle", result: "DIED: The next tremor causes the unreinforced stone second floor to collapse instantly, crushing your entire household beneath masonry." },
+                { text: "Replace the wooden upper frame with heavy fired bricks and a solid concrete roof", result: "DIED: The heavy masonry roof collapses during a midnight earthquake; fatally crushed in your bed." }
+            ],
+            history: "Following devastating earthquakes, Spanish architectural decrees favored the Arquitectura Mestiza model: a stone lower level combined with an elastic, interlocking timber upper structure."
+        },
+        {
+            era: "1880 - Binondo Commercial District",
+            scenario: "You are an Indio artisan entering a Spanish-owned pharmacy on Calle Rosario. How do you address the shopkeeper?",
+            choices: [
+                { text: "Address him politely as Señor or Don and wait to be acknowledged", result: "SURVIVE" },
+                { text: "Slap him on the shoulder and ask for his cheapest ointment in Tagalog", result: "DIED: Beaten by municipal police and jailed for disorderly insolence." },
+                { text: "Demand to be served before Spanish customers who arrived earlier", result: "DIED: Ejected by force; charged with inciting public disorder." }
+            ],
+            history: "Rigid racial hierarchies strictly enforced deferential titles and submissive public etiquette toward European merchants."
+        },
+        {
+            era: "1890 - Land Registry (Hacienda)",
+            scenario: "A wealthy monastic order claims ownership over your family's ancestral rice fields. What legal step must you take?",
+            choices: [
+                { text: "File a formal possessory information title (Información Posesoria) with Spanish legal representation", result: "SURVIVE" },
+                { text: "Chop down the boundary markers and plant your crops anyway", result: "DIED: Civil guards burn your house; you are exiled to Mindanao." },
+                { text: "Draft a response and fasten it to their door", result: "DIED: Nailing a written protest to the convento door is treated as public sedition and filibusterismo; tracked down by informants and executed at Bagumbayan." }
+            ],
+            history: "The 1894 Maura Law and earlier registration decrees heavily penalized undocumented physical resistance or written protests against monastic estate titles."
+        },
+        {
+            era: "1834 - Port of Manila",
+            scenario: "Manila officially opens to world trade. A foreign merchant from Boston offers to buy your entire sugar harvest. What must you ensure?",
+            choices: [
+                { text: "That the transaction goes through a licensed colonial broker with royal duty stamps", result: "SURVIVE" },
+                { text: "Load the sugar onto the schooner", result: "DIED: Evading harbor customs tariffs and colonial trade registries prompts royal revenue cutters to seize the vessel; you are sentenced to the galleys for life." },
+                { text: "Accept payment in unregistered foreign silver without Spanish mint marks", result: "DIED: Arrested for circulating illicit foreign specie; jailed indefinitely." }
+            ],
+            history: "Foreign trade remained tightly regulated by royal customs officials and tariff registries after the port opened in 1834."
+        },
+        {
+            era: "1874 - Town Plaza Midday",
+            scenario: "The midday sun over the cobblestone plaza is blistering. You need to shield yourself from the heat while crossing the square. How do you protect yourself?",
+            choices: [
+                { text: "Wear a woven salakot or drape a modest cloth over your head and move quickly along the shaded arcades", result: "SURVIVE" },
+                { text: "Open an ornate silk folding umbrella (quitasol) to stroll casually across the open plaza", result: "DIED: Using an aristocratic parasol without Spanish noble or elite Principalía rank violates strict sumptuary customs; municipal alguaciles administer 15 lashes for insolent presumption of rank." },
+                { text: "Walk directly behind the Alcalde Mayor to share the shade cast by his servant's ceremonial canopy", result: "DIED: His armed retinue assumes you are attempting an assassination; clubbed to the ground by rifle butts." }
+            ],
+            history: "Sumptuary customs reserved decorative umbrellas (quitasoles) for colonial dignitaries, high clergy, and the principalía."
+        },
+        {
+            era: "1872 - Municipal Gallera (Cockpit)",
+            scenario: "You have a prized fighting rooster and want to legally enter him into a high-stakes match at the municipal cockpit. What day do you go?",
+            choices: [
+                { text: "Sunday afternoon after the morning high mass", result: "SURVIVE" },
+                { text: "Tuesday morning behind your barn with your neighbors", result: "DIED: The Guardia Civil raids the unlicensed match to enforce the state gambling monopoly; arrested for illegal tupada and sentenced to two months of hard labor in the stone quarry." },
+                { text: "Good Friday afternoon during Holy Week", result: "DIED: Conducting a cockfight during the solemn observance of Christ's passion is treated as grave public sacrilege; sentenced to 15 public lashes at the tribunal and excommunicated." }
+            ],
+            history: "Cockfighting was a heavily taxed government monopoly strictly restricted to authorized arenas on Sundays and official holidays."
+        },
+        {
+            era: "1892 - Ferrocarril de Manila a Dagupan (Tutuban Station)",
+            scenario: "You board the newly opened Manila-Dagupan railway. What ticket class and conduct is permitted for an Indio merchant without elite status?",
+            choices: [
+                { text: "Purchase a standard Third-Class ticket and remain in the designated passenger car", result: "SURVIVE" },
+                { text: "Purchase a first-class velvet coach ticket and remain in the designated passenger car", result: "DIED: Railway guards discover you occupying elite seating reserved for Spanish Peninsulares; you are ejected from the train at full speed and fatally injured along the tracks." },
+                { text: "Ride atop the train roof to save ticket money", result: "DIED: Struck by a low stone railway bridge near Caloocan; decapitated instantly." }
+            ],
+            history: "The Manila-Dagupan railway enforced rigid class demarcations; commoners who attempted to occupy first-class coaches faced forceful ejection."
+        },
+        {
+            era: "1888 - Pueblo Casa Tribunal",
+            scenario: "The municipal scribe is compiling the annual padrón de almas (civil census registry). How many members of your household do you report?",
+            choices: [
+                { text: "Declare every living resident accurately to match baptismal and tribute records", result: "SURVIVE" },
+                { text: "Declare the head of household only", result: "DIED: Listing only your frail grandfather to conceal the rest of your taxable kin causes authorities to sentence you and him to the limestone quarries, where you both succumb to exhaustion and dysentery." },
+                { text: "Declare only the men aged 16 and above", result: "DIED: Failing to declare the women and children while attempting to game the tribute registry is flagged by the local tax collector; arrested for subversion and sentenced to two years of fatal road labor." }
+            ],
+            history: "Colonial tax and civil registration laws cross-referenced parish baptismal rolls; underreporting dependents placed severe joint liability on both the informant and the declared head of the house."
+        },
+        {
+            era: "1880 - Pueblo Streets at Midnight",
+            scenario: "You are walking home after dark when a member of the Guardia Civil or local Cuadrilleros shouts '¡Alto! ¿Quién vive?' What is your response?",
+            choices: [
+                { text: "Freeze immediately, hold up your lamp, and reply '¡España!'", result: "SURVIVE" },
+                { text: "Shout back your full modern legal name and ask for his badge number", result: "DIED: Mistaken for an insolent rebel or fleeing bandit; bayoneted on the spot." },
+                { text: "Shout '¡Viva Filipinas!' into the darkness", result: "DIED: Instantly identified as an open insurgent and traitor to the Spanish Crown; shot dead." }
+            ],
+            history: "When challenged with '¿Quién vive?', civilians were legally required to halt and affirm allegiance to Spain ('¡España!')."
+        },
+        {
+            era: "1875 - Calle Real",
+            scenario: "You are pushing your cart of market goods down Calle Real just as a minor religious procession approaches. What must you do?",
+            choices: [
+                { text: "Pull your cart completely off the street into a side alley and kneel until the carriage passes", result: "SURVIVE" },
+                { text: "Try to slip past the front of the holy standard before the priest reaches you", result: "DIED: Seized by church guards for blocking a sacred procession; public whipping at the tribunal." },
+                { text: "Shout at the procession to move faster because your vegetables are wilting", result: "DIED: Arrested for blasphemy and public sedition; indefinite imprisonment." }
+            ],
+            history: "Thoroughfares during religious processions were sacred zones; interrupting liturgical transit was treated as criminal blasphemy."
+        },
+        {
+            era: "1885 - Pueblo Plaza at Dusk",
+            scenario: "The church bells begin to toll the evening Ánimas / Toque de Queda across the pueblo square. What is your immediate course of action?",
+            choices: [
+                { text: "Stop, cross yourself, recite the short prayer, and immediately head indoors before the final stroke fades", result: "SURVIVE" },
+                { text: "Finish your activity within closed premises", result: "DIED: Unlicensed gatherings and unauthorized business behind closed doors after curfew are treated as clandestine subversive meetings; raided by the Guardia Civil, you are bayoneted during the sweep." },
+                { text: "Continue your activity once the tolling bell stops", result: "DIED: Failing to clear the streets once the bells fall silent puts you in direct violation of the municipal curfew; intercepted by the night patrol and shot dead on suspicion of banditry." }
+            ],
+            history: "Evening church bells signaled mandatory civilian curfew; after the final chime, anyone found in the streets or conducting unauthorized private gatherings faced summary military enforcement."
+        }
+    ];
+
+    let sessionDeck = [];
+    let currentStep = 0;
+    let daysSurvived = 0;
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function goHome() {
+        renderIntroScreen();
+    }
+
+    function renderIntroScreen() {
+        const container = document.getElementById('game-content');
+        container.innerHTML = `
+            <div class="intro-box">
+                <div class="intro-lore">
+                    You are from present day in a former Spanish colony. Through an inexplicable twist of fate, you wake up in 
+                    <strong>Spanish colonial Filipinas (circa 1565–1898)</strong>. 
+                    <br><br>
+                    You are now bound by strict curfews, monastic decrees, forced labor and caste etiquette. One wrong assumption or breach of protocol will result in immediate execution, fatal disease or penal exile.
+                    <span class="intro-challenge">Can you survive all 25 trials?</span>
+                </div>
+                <button class="action-btn" onclick="startGameFromIntro()">Enter</button>
+            </div>
+        `;
+    }
+
+    function startGameFromIntro() {
+        startBGM();
+        startNewGame();
+    }
+
+    function startNewGame() {
+        const poolCopy = [...defaultQuestionPool];
+        shuffle(poolCopy);
+        sessionDeck = poolCopy;
+        currentStep = 0;
+        daysSurvived = 0;
+        renderScenario();
+    }
+
+    function renderScenario(animateGreen = false) {
+        const container = document.getElementById('game-content');
+        const totalDays = sessionDeck.length;
+
+        if (currentStep >= sessionDeck.length) {
+            playVictoryFanfare();
+            container.innerHTML = `
+                <div class="death-screen" style="border-color: var(--gold); background: #fdfaf0;">
+                    <div class="header-tag" style="color: var(--gold);">Gloria Y Victoria</div>
+                    <div class="death-title" style="color: var(--gold);">Sobreviviente!</div>
+                    <p style="font-size: 1.1rem; margin: 1rem 0; line-height: 1.6;">
+                        Against all odds, you navigated the decrees, curfews, tithes, and inquisitions. 
+                        <strong>You survived all 25 trials of the Empire!</strong>
+                    </p>
+                    <button class="action-btn" style="background: var(--border);" onclick="startNewGame()">Play Again</button>
+                </div>
+            `;
+            return;
+        }
+
+        const currentQ = sessionDeck[currentStep];
+        const shuffledChoices = shuffle([...currentQ.choices]);
+
+        container.innerHTML = `
+            <div class="era-header">${currentQ.era}</div>
+            <div id="day-counter" class="day-counter-box ${animateGreen ? 'ding-green' : ''}">
+                Scenario ${daysSurvived + 1}/${totalDays} (Score: ${daysSurvived})
+            </div>
+            <div class="divider"></div>
+            <div class="scenario-box">${currentQ.scenario}</div>
+            <div class="choices-grid" id="choices-container"></div>
+        `;
+
+        const choicesContainer = document.getElementById('choices-container');
+        shuffledChoices.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn';
+            btn.innerText = choice.text;
+            btn.onclick = () => handleChoice(choice, currentQ, btn);
+            choicesContainer.appendChild(btn);
+        });
+    }
+
+    function handleChoice(choice, questionData, clickedBtn) {
+        if (choice.result === "SURVIVE") {
+            playDing();
+            daysSurvived++;
+            currentStep++;
+            if (clickedBtn) clickedBtn.classList.add('correct-glow');
+            
+            setTimeout(() => {
+                renderScenario(true);
+            }, 300);
+        } else {
+            playDeathSound();
+            renderDeathScreen(choice.result, questionData);
+        }
+    }
+
+    function renderDeathScreen(deathReason, questionData) {
+        const container = document.getElementById('game-content');
+        container.innerHTML = `
+            <div class="death-screen">
+                <div class="header-tag" style="color: var(--blood);">Certificado de Defunción</div>
+                <div class="death-title">DEAD</div>
+                <div class="death-reason"><strong>Cause of Death:</strong> ${deathReason.replace('DIED: ', '')}</div>
+                <div class="history-note"><strong>Historical Reality:</strong> ${questionData.history}</div>
+                <div style="margin-top: 1rem; font-size: 0.95rem; font-weight: bold; color: var(--border);">
+                    You survived ${daysSurvived} Scenarios.
+                </div>
+                <button class="action-btn" onclick="startNewGame()">Try Again</button>
+            </div>
+        `;
+    }
+
+    function getShareText() {
+        if (daysSurvived > 0) {
+            return `I survived ${daysSurvived} scenarios in 'Survive the Empire: Spanish Colonial Life!' Can you beat my score?`;
+        }
+        return `Can you survive Spanish colonial life? Test your survival skills in 'Survive the Empire'!`;
+    }
+
+    function shareFacebook() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+    }
+
+    function shareX() {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent(getShareText());
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=600,height=400');
+    }
+
+    function copyGameLink() {
+        const shareText = `${getShareText()} ${window.location.href}`;
+        navigator.clipboard.writeText(shareText).then(() => {
+            alert("Game link and score copied to clipboard!");
+        }).catch(() => {
+            alert("Failed to copy link. Please share the URL directly.");
+        });
+    }
+
+    renderIntroScreen();
+</script>
+
+</body>
+</html>
