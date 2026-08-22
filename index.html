@@ -799,7 +799,7 @@
         return array;
     }
 
-    function goHome() {
+function goHome() {
         renderIntroScreen();
     }
 
@@ -812,13 +812,12 @@
                     <strong>Spanish colonial Filipinas (circa 1565–1898)</strong>. 
                     <br><br>
                     You are now bound by strict curfews, monastic decrees, forced labor and caste etiquette. One wrong assumption or breach of protocol will result in immediate execution, fatal disease or penal exile.
-                    <span class="intro-challenge">Can you survive all 30 days (1 full month)?</span>
+                    <span class="intro-challenge">Can you survive all 30 days?</span>
                 </div>
                 <button class="action-btn" onclick="startGameFromIntro()">Enter</button>
             </div>
         `;
     }
-
     function startGameFromIntro() {
         startBGM();
         startNewGame();
