@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survive the Empire: Spanish Colonial Life</title>
+    <title>Can You Survive 30 Days in Spanish Colonial Life?</title>
+
+    <meta property="og:title" content="Can You Survive 30 Days in Spanish Colonial Life?">
+    <meta property="og:description" content="A 30-day survival trivia game set in 19th-century Spanish colonial Filipinas. One mistake means exile, prison, or execution.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
     <style>
         :root {
             --parchment: #f9f4e8;
@@ -15,6 +21,7 @@
             --border: #523f2f;
             --fb: #1877f2;
             --x: #000000;
+            --wa: #25d366;
         }
 
         * {
@@ -100,7 +107,7 @@
         }
 
         h1.title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--ink);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -127,7 +134,7 @@
 
         .intro-challenge {
             text-align: center;
-            font-size: 0.98rem;
+            font-size: 1rem;
             font-weight: bold;
             color: var(--blood);
             margin-top: 0.9rem;
@@ -259,8 +266,15 @@
 
         .action-btn:hover { opacity: 0.9; }
 
+        .share-prompt {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--border);
+            margin: 1rem 0 0.5rem 0;
+        }
+
         .footer-share-section {
-            margin-top: 1rem;
+            margin-top: 0.75rem;
             border-top: 1px dashed var(--border);
             padding-top: 0.75rem;
             display: flex;
@@ -284,10 +298,14 @@
             border-radius: 3px;
             cursor: pointer;
             text-decoration: none;
+            transition: opacity 0.15s;
         }
 
+        .share-btn:hover { opacity: 0.85; }
+        .share-native { background-color: var(--gold); color: #000; font-weight: bold; }
         .share-fb { background-color: var(--fb); }
         .share-x { background-color: var(--x); }
+        .share-wa { background-color: var(--wa); }
         .share-copy { background-color: var(--border); }
     </style>
 </head>
@@ -304,15 +322,17 @@
     <button class="top-nav-btn music-btn" id="music-toggle" onclick="toggleBGM()">Music: OFF</button>
 
     <div class="header-tag">Survive the Empire</div>
-    <h1 class="title">Can You Survive Spanish Colonial Life?</h1>
+    <h1 class="title">Can You Survive 30 Days in Spanish Colonial Life?</h1>
     
     <div id="game-content"></div>
 
     <div class="footer-share-section">
         <span>Share:</span>
-        <button class="share-btn share-fb" onclick="shareFacebook()">Facebook</button>
-        <button class="share-btn share-x" onclick="shareX()">X / Twitter</button>
-        <button class="share-btn share-copy" onclick="copyGameLink()">Copy Link</button>
+        <button class="share-btn share-native" onclick="shareNative()">Share</button>
+        <button class="share-btn share-fb" onclick="shareFacebook()">FB</button>
+        <button class="share-btn share-x" onclick="shareX()">X</button>
+        <button class="share-btn share-wa" onclick="shareWhatsApp()">WhatsApp</button>
+        <button class="share-btn share-copy" onclick="copyGameLink()">Copy</button>
     </div>
 </div>
 
@@ -443,7 +463,9 @@
         } catch (e) {}
     }
 
-    const defaultQuestionPool = [
+    // 30 Sequenced Scenarios (Days 1 - 30 Escalation)
+    const masterQuestionPool = [
+        // Days 1-5: Daily Street Life & Public Etiquette
         {
             era: "1884 - Pueblo Streets",
             scenario: "The Guardia Civil stops you at dusk outside the town plaza and demands identification. What do you present?",
@@ -465,36 +487,6 @@
             history: "Evening bell rites were strictly enforced by colonial parishes; failure to show public piety was treated as open sacrilege."
         },
         {
-            era: "1849 - Municipal Tribunal",
-            scenario: "Governor-General Narciso Clavería issues his naming decree. The Cabeza de Barangay hands you the Catálogo. What is your move?",
-            choices: [
-                { text: "Select an assigned surname from the Catálogo for your household", result: "SURVIVE" },
-                { text: "Adopt the noble surname of the Governor-General without permission", result: "DIED: Usurping noble Castilian names without proven lineage lands you in penal exile to the Marianas." },
-                { text: "Refuse to pick a surname and declare sovereign independence", result: "DIED: Summary execution via garrote for open defiance against the Royal Audiencia." }
-            ],
-            history: "The 1849 Clavería Decree standardized native and colonial tax registries using the Catálogo Alfabético de Apellidos."
-        },
-        {
-            era: "1860 - Mountain Logging Camp",
-            scenario: "You are drafted for 40 days of compulsory polo y servicios labor. You could not afford the falla exemption tax. What is your assigned task?",
-            choices: [
-                { text: "Cut molave and mahogany timber in the mountains for shipyards", result: "SURVIVE" },
-                { text: "Demand to serve as an administrative clerk at the Real Audiencia", result: "DIED: Insubordination! You are tied to the whipping post and beaten by the colonial overseer." },
-                { text: "Attempt to flee into the deep cordilleras", result: "DIED: You are tracked down by cuadrilleros and shot as a runaway polista." }
-            ],
-            history: "Polistas were required to provide arduous public labor primarily in timber felling, church building, and infrastructure works."
-        },
-        {
-            era: "1892 - Manila Port Customs",
-            scenario: "Colonial customs officers board your inter-island brigantine in Manila Bay searching for contraband. What must you conceal at all costs?",
-            choices: [
-                { text: "Banned copies of José Rizal's Noli Me Tángere and La Solidaridad", result: "SURVIVE" },
-                { text: "A crate of registered dried fish with official municipal tax stamps", result: "DIED: You hid the fish but left subversive political pamphlets on deck. Executed at Bagumbayan." },
-                { text: "A devotional rosary and a Tagalog prayer booklet", result: "DIED: You hid the prayer book while the inspector found anti-friar manifestos tucked in your belt. Arrested for filibusterismo." }
-            ],
-            history: "Possessing or circulating banned nationalist reform literature in the 1890s was treated as capital treason."
-        },
-        {
             era: "1878 - Calle Real",
             scenario: "A Spanish Peninsular official rides past on horseback along the cobblestone highway. What is your required reaction?",
             choices: [
@@ -503,96 +495,6 @@
                 { text: "Continue walking down the center of the road ignoring him", result: "DIED: Struck down by the carriage escort and jailed for public disrespect to the Crown." }
             ],
             history: "Strict racial and sumptuary codes required indios and mestizos to show overt deference to Spanish peninsulares in public."
-        },
-        {
-            era: "1882 - Town Parish Church",
-            scenario: "It is Ash Wednesday and the parish priest is administering ashes. You arrived late after working the field. What do you do?",
-            choices: [
-                { text: "Kneel at the rear of the nave and wait humbly for the friar's instruction", result: "SURVIVE" },
-                { text: "Bargain with the sacristan to slip you consecrated host early", result: "DIED: Accused of sacrilege and witchcraft. Handed over to the Inquisition tribunal." },
-                { text: "Leave early without receiving ashes to catch the municipal cockfight", result: "DIED: Denounced from the pulpit as an apostate; sentenced to 30 days in the municipal stocks." }
-            ],
-            history: "Religious non-conformity or perceived disrespect toward parish sacraments carried immediate criminal and ecclesiastical penalties."
-        },
-        {
-            era: "1855 - Tabacalera Warehouse",
-            scenario: "You are a tenant farmer delivering your harvest under the Spanish Tobacco Monopoly. The inspector claims your leaves are second-grade. What must you do?",
-            choices: [
-                { text: "Accept the graded valuation and take the issued municipal payment voucher (papeleta)", result: "SURVIVE" },
-                { text: "Smuggle the rejected tobacco leaves into town to sell privately", result: "DIED: Caught by the Carabineros de Hacienda. Summary hanging for illicit tobacco contraband." },
-                { text: "Threaten the colonial inspector with your bolo knife", result: "DIED: Shot immediately by the tobacco warehouse garrison for armed rebellion." }
-            ],
-            history: "The Tobacco Monopoly (1782–1882) strictly prohibited private curing, selling, or hoarding of tobacco."
-        },
-        {
-            era: "1865 - Provincial Boundary",
-            scenario: "You are traveling between provinces to sell pottery. The Guardia Civil post demands your travel credentials. What document is required?",
-            choices: [
-                { text: "Your Pasaporte de Interior (domestic internal travel passport)", result: "SURVIVE" },
-                { text: "A verbal promise that your parish friar knows your character", result: "DIED: Detained as an unregistered vagrant and assigned to two years of unpaid penal labor." },
-                { text: "A drawing of your ancestral home", result: "DIED: Ridiculed and jailed indefinitely as an undocumented trespasser." }
-            ],
-            history: "Inter-provincial movement within the archipelago required stamped internal passports to prevent peasant flight."
-        },
-        {
-            era: "1870 - Governor's Residence",
-            scenario: "You are summoned to the Casa Real as a town cabeza. How must your Barong Tagalog be worn according to colonial decree?",
-            choices: [
-                { text: "Worn untucked with no pockets and made of translucent piña or sinamay", result: "SURVIVE" },
-                { text: "Tucked securely inside your trousers with a leather belt and hidden inner coat", result: "DIED: Accused of concealing weapons and imitating Spanish nobility. Imprisoned for sumptuary defiance." },
-                { text: "Draped in a military-style cape with gold epaulets", result: "DIED: Arrested for treasonous impersonation of a colonial officer of the King." }
-            ],
-            history: "Spanish sumptuary laws required native Filipinos to wear untucked collarless shirts without pockets to prevent concealed weapons."
-        },
-        {
-            era: "1885 - Parish Rectory",
-            scenario: "The local curate demands the collection of the Sanctorum and Diezmos Prediales taxes from your farm harvest. What is the lawful response?",
-            choices: [
-                { text: "Pay the required tithes and ensure the payment is recorded in the parish padrón", result: "SURVIVE" },
-                { text: "Tell the friar the church has plenty of wealth from friar estates", result: "DIED: Branded a filibustero and excommunicated; seized by civil guards and exiled to Jolo." },
-                { text: "Pay half and claim the other half was eaten by locusts with no proof", result: "DIED: Accused of defrauding the Holy Mother Church; sentenced to public flogging at the tribunal." }
-            ],
-            history: "Failure to pay ecclesiastical tithes led to immediate charges of heresy or civil debt imprisonment."
-        },
-        {
-            era: "1896 - Manila Outskirts",
-            scenario: "You hear whispering about secret meetings involving blood compacts and Katipunan triangles. What must you avoid doing at night?",
-            choices: [
-                { text: "Wandering into bamboo groves after the municipal curfew drum", result: "SURVIVE" },
-                { text: "Asking your parish priest if the rumors of revolution are true", result: "DIED: The friar alerts the Guardia Civil; you are tortured in Fort Santiago as a suspected conspirator." },
-                { text: "Carrying an unregistered bolo and an inkpot near military barracks", result: "DIED: Mistaken for an armed insurgent courier and executed on the spot without trial." }
-            ],
-            history: "During the 1896 revolutionary crisis, martial law made nocturnal movement near garrisons grounds for summary execution."
-        },
-        {
-            era: "1882 - Manila Cholera Outbreak",
-            scenario: "The Great Cholera Epidemic sweeps Luzon. Colonial quarantine guards cordon off your neighborhood. What is the safest survival choice?",
-            choices: [
-                { text: "Remain inside quarters and respect quarantine flags", result: "SURVIVE" },
-                { text: "Attend a healing novena at the paseo", result: "DIED: You mingle with infected crowds in the open promenade; contract acute cholera and perish within 24 hours." },
-                { text: "Clean the house and dump contaminated wash water at the closest stream", result: "DIED: Sanitary inspectors catch you polluting the public water source; arrested on the spot and bayoneted by quarantine sentries." }
-            ],
-            history: "During the 1882 cholera outbreak, colonial health boards strictly enforced localized cordons; public gatherings and improper waste disposal carried fatal risks."
-        },
-        {
-            era: "1840 - Town Tribunal",
-            scenario: "You are eligible to pay the annual Tributo. You lack silver pesos but possess produce. What acceptable tribute in kind can you surrender?",
-            choices: [
-                { text: "Standard measures of unhusked palay (rice) or bundles of abaca fiber", result: "SURVIVE" },
-                { text: "Handmade wooden toy carvings of Spanish galleons", result: "DIED: Goods rejected; livestock seized; jailed for tax evasion." },
-                { text: "Foreign banknotes from British merchant houses in Hong Kong", result: "DIED: Suspected of illegal foreign trade; arrested for contraband." }
-            ],
-            history: "The colonial tribute system strictly regulated acceptable goods in kind, restricting them to staple commodities like unhusked rice and abaca."
-        },
-        {
-            era: "1880 - Post-Earthquake Manila / Pueblo Outskirts",
-            scenario: "Following severe earthquakes, you are constructing a bahay na bato. How do you structure the building to satisfy colonial building codes and survive tremors?",
-            choices: [
-                { text: "Build a flexible heavy-timber frame on the upper floor resting on a ground-floor stone base", result: "SURVIVE" },
-                { text: "Build pure, unreinforced solid stone walls all the way up to the roof tiles like a medieval castle", result: "DIED: The next tremor causes the unreinforced stone second floor to collapse instantly, crushing your entire household beneath masonry." },
-                { text: "Replace the wooden upper frame with heavy fired bricks and a solid concrete roof", result: "DIED: The heavy masonry roof collapses during a midnight earthquake; fatally crushed in your bed." }
-            ],
-            history: "Following devastating earthquakes, Spanish architectural decrees favored the Arquitectura Mestiza model: a stone lower level combined with an elastic, interlocking timber upper structure."
         },
         {
             era: "1880 - Binondo Commercial District",
@@ -605,14 +507,88 @@
             history: "Rigid racial hierarchies strictly enforced deferential titles and submissive public etiquette toward European merchants."
         },
         {
-            era: "1890 - Land Registry (Hacienda)",
-            scenario: "A wealthy monastic order claims ownership over your family's ancestral rice fields. What legal step must you take?",
+            era: "1874 - Town Plaza Midday",
+            scenario: "The midday sun over the cobblestone plaza is blistering. You need to shield yourself from the heat while crossing the square. How do you protect yourself?",
             choices: [
-                { text: "File a formal possessory information title (Información Posesoria) with Spanish legal representation", result: "SURVIVE" },
-                { text: "Chop down the boundary markers and plant your crops anyway", result: "DIED: Civil guards burn your house; you are exiled to Mindanao." },
-                { text: "Draft a response and fasten it to their door", result: "DIED: Nailing a written protest to the convento door is treated as public sedition and filibusterismo; tracked down by informants and executed at Bagumbayan." }
+                { text: "Wear a woven salakot or drape a modest cloth over your head and move quickly along the shaded arcades", result: "SURVIVE" },
+                { text: "Open an ornate silk folding umbrella (quitasol) to stroll casually across the open plaza", result: "DIED: Using an aristocratic parasol without Spanish noble or elite Principalía rank violates strict sumptuary customs; municipal alguaciles administer 15 lashes for insolent presumption of rank." },
+                { text: "Walk directly behind the Alcalde Mayor to share the shade cast by his servant's ceremonial canopy", result: "DIED: His armed retinue assumes you are attempting an assassination; clubbed to the ground by rifle butts." }
             ],
-            history: "The 1894 Maura Law and earlier registration decrees heavily penalized undocumented physical resistance or written protests against monastic estate titles."
+            history: "Sumptuary customs reserved decorative umbrellas (quitasoles) for colonial dignitaries, high clergy, and the principalía."
+        },
+
+        // Days 6-10: Bureaucracy, Names & Taxes
+        {
+            era: "1849 - Municipal Tribunal",
+            scenario: "Governor-General Narciso Clavería issues his naming decree. The Cabeza de Barangay hands you the Catálogo. What is your move?",
+            choices: [
+                { text: "Select an assigned surname from the Catálogo for your household", result: "SURVIVE" },
+                { text: "Adopt the noble surname of the Governor-General without permission", result: "DIED: Usurping noble Castilian names without proven lineage lands you in penal exile to the Marianas." },
+                { text: "Refuse to pick a surname and declare sovereign independence", result: "DIED: Summary execution via garrote for open defiance against the Royal Audiencia." }
+            ],
+            history: "The 1849 Clavería Decree standardized native and colonial tax registries using the Catálogo Alfabético de Apellidos."
+        },
+        {
+            era: "1840 - Town Tribunal",
+            scenario: "You are eligible to pay the annual Tributo. You lack silver pesos but possess produce. What acceptable tribute in kind can you surrender?",
+            choices: [
+                { text: "Standard measures of unhusked palay (rice) or bundles of abaca fiber", result: "SURVIVE" },
+                { text: "Handmade wooden toy carvings of Spanish galleons", result: "DIED: Goods rejected; livestock seized; jailed for tax evasion." },
+                { text: "Foreign banknotes from British merchant houses in Hong Kong", result: "DIED: Suspected of illegal foreign trade; arrested for contraband." }
+            ],
+            history: "The colonial tribute system strictly regulated acceptable goods in kind, restricting them to staple commodities like unhusked rice and abaca."
+        },
+        {
+            era: "1865 - Provincial Boundary",
+            scenario: "You are traveling between provinces to sell pottery. The Guardia Civil post demands your travel credentials. What document is required?",
+            choices: [
+                { text: "Your Pasaporte de Interior (domestic internal travel passport)", result: "SURVIVE" },
+                { text: "A verbal promise that your parish friar knows your character", result: "DIED: Detained as an unregistered vagrant and assigned to two years of unpaid penal labor." },
+                { text: "A drawing of your ancestral home", result: "DIED: Ridiculed and jailed indefinitely as an undocumented trespasser." }
+            ],
+            history: "Inter-provincial movement within the archipelago required stamped internal passports to prevent peasant flight."
+        },
+        {
+            era: "1888 - Pueblo Casa Tribunal",
+            scenario: "The municipal scribe is compiling the annual padrón de almas (civil census registry). How many members of your household do you report?",
+            choices: [
+                { text: "Declare every living resident accurately to match baptismal and tribute records", result: "SURVIVE" },
+                { text: "Declare the head of household only", result: "DIED: Listing only your frail grandfather to conceal the rest of your taxable kin causes authorities to sentence you and him to the limestone quarries, where you both succumb to exhaustion and dysentery." },
+                { text: "Declare only the men aged 16 and above", result: "DIED: Failing to declare the women and children while attempting to game the tribute registry is flagged by the local tax collector; arrested for subversion and sentenced to two years of fatal road labor." }
+            ],
+            history: "Colonial tax and civil registration laws cross-referenced parish baptismal rolls; underreporting dependents placed severe joint liability on both the informant and the declared head of the house."
+        },
+        {
+            era: "1870 - Governor's Residence",
+            scenario: "You are summoned to the Casa Real as a town cabeza. How must your Barong Tagalog be worn according to colonial decree?",
+            choices: [
+                { text: "Worn untucked with no pockets and made of translucent piña or sinamay", result: "SURVIVE" },
+                { text: "Tucked securely inside your trousers with a leather belt and hidden inner coat", result: "DIED: Accused of concealing weapons and imitating Spanish nobility. Imprisoned for sumptuary defiance." },
+                { text: "Draped in a military-style cape with gold epaulets", result: "DIED: Arrested for treasonous impersonation of a colonial officer of the King." }
+            ],
+            history: "Spanish sumptuary laws required native Filipinos to wear untucked collarless shirts without pockets to prevent concealed weapons."
+        },
+
+        // Days 11-15: Labor, Land & Monopolies
+        {
+            era: "1860 - Mountain Logging Camp",
+            scenario: "You are drafted for 40 days of compulsory polo y servicios labor. You could not afford the falla exemption tax. What is your assigned task?",
+            choices: [
+                { text: "Cut molave and mahogany timber in the mountains for shipyards", result: "SURVIVE" },
+                { text: "Demand to serve as an administrative clerk at the Real Audiencia", result: "DIED: Insubordination! You are tied to the whipping post and beaten by the colonial overseer." },
+                { text: "Attempt to flee into the deep cordilleras", result: "DIED: You are tracked down by cuadrilleros and shot as a runaway polista." }
+            ],
+            history: "Polistas were required to provide arduous public labor primarily in timber felling, church building, and infrastructure works."
+        },
+        {
+            era: "1855 - Tabacalera Warehouse",
+            scenario: "You are a tenant farmer delivering your harvest under the Spanish Tobacco Monopoly. The inspector claims your leaves are second-grade. What must you do?",
+            choices: [
+                { text: "Accept the graded valuation and take the issued municipal payment voucher (papeleta)", result: "SURVIVE" },
+                { text: "Smuggle the rejected tobacco leaves into town to sell privately", result: "DIED: Caught by the Carabineros de Hacienda. Summary hanging for illicit tobacco contraband." },
+                { text: "Threaten the colonial inspector with your bolo knife", result: "DIED: Shot immediately by the tobacco warehouse garrison for armed rebellion." }
+            ],
+            history: "The Tobacco Monopoly (1782–1882) strictly prohibited private curing, selling, or hoarding of tobacco."
         },
         {
             era: "1834 - Port of Manila",
@@ -625,14 +601,98 @@
             history: "Foreign trade remained tightly regulated by royal customs officials and tariff registries after the port opened in 1834."
         },
         {
-            era: "1874 - Town Plaza Midday",
-            scenario: "The midday sun over the cobblestone plaza is blistering. You need to shield yourself from the heat while crossing the square. How do you protect yourself?",
+            era: "1889 - Friar Hacienda Estate",
+            scenario: "The monastic estate administrator (Hacendero) raises your farm's canon (land rent) by 30% without prior warning. How do you respond?",
             choices: [
-                { text: "Wear a woven salakot or drape a modest cloth over your head and move quickly along the shaded arcades", result: "SURVIVE" },
-                { text: "Open an ornate silk folding umbrella (quitasol) to stroll casually across the open plaza", result: "DIED: Using an aristocratic parasol without Spanish noble or elite Principalía rank violates strict sumptuary customs; municipal alguaciles administer 15 lashes for insolent presumption of rank." },
-                { text: "Walk directly behind the Alcalde Mayor to share the shade cast by his servant's ceremonial canopy", result: "DIED: His armed retinue assumes you are attempting an assassination; clubbed to the ground by rifle butts." }
+                { text: "Pay the demanded canon under protest while seeking counsel with the town's Gobernadorcillo", result: "SURVIVE" },
+                { text: "Refuse to pay and organize a tenant strike to block harvest deliveries", result: "DIED: Civil guards and provincial cuadrilleros evict your household, torch your storehouses, and exile you to Balabac." },
+                { text: "Secretly divert the irrigation canal to dry out neighboring convent fields", result: "DIED: Arrested for agrarian sabotage against ecclesiastical property; sentenced to hard labor at Fort San Felipe." }
             ],
-            history: "Sumptuary customs reserved decorative umbrellas (quitasoles) for colonial dignitaries, high clergy, and the principalía."
+            history: "Tenant disputes on friar estates often resulted in swift military evictions and mass deportations."
+        },
+        {
+            era: "1892 - Ferrocarril de Manila a Dagupan (Tutuban Station)",
+            scenario: "You board the newly opened Manila-Dagupan railway. What ticket class and conduct is permitted for an Indio merchant without elite status?",
+            choices: [
+                { text: "Purchase a standard Third-Class ticket and remain in the designated passenger car", result: "SURVIVE" },
+                { text: "Purchase a first-class velvet coach ticket and remain in the designated passenger car", result: "DIED: Railway guards discover you occupying elite seating reserved for Spanish Peninsulares; you are ejected from the train at full speed and fatally injured along the tracks." },
+                { text: "Ride atop the train roof to save ticket money", result: "DIED: Struck by a low stone railway bridge near Caloocan; decapitated instantly." }
+            ],
+            history: "The Manila-Dagupan railway enforced rigid class demarcations; commoners who attempted to occupy first-class coaches faced forceful ejection."
+        },
+
+        // Days 16-20: Church, Courts & Elite Politics
+        {
+            era: "1882 - Town Parish Church",
+            scenario: "It is Ash Wednesday and the parish priest is administering ashes. You arrived late after working the field. What do you do?",
+            choices: [
+                { text: "Kneel at the rear of the nave and wait humbly for the friar's instruction", result: "SURVIVE" },
+                { text: "Bargain with the sacristan to slip you consecrated host early", result: "DIED: Accused of sacrilege and witchcraft. Handed over to the Inquisition tribunal." },
+                { text: "Leave early without receiving ashes to catch the municipal cockfight", result: "DIED: Denounced from the pulpit as an apostate; sentenced to 30 days in the municipal stocks." }
+            ],
+            history: "Religious non-conformity or perceived disrespect toward parish sacraments carried immediate criminal and ecclesiastical penalties."
+        },
+        {
+            era: "1885 - Parish Rectory",
+            scenario: "The local curate demands the collection of the Sanctorum and Diezmos Prediales taxes from your farm harvest. What is the lawful response?",
+            choices: [
+                { text: "Pay the required tithes and ensure the payment is recorded in the parish padrón", result: "SURVIVE" },
+                { text: "Tell the friar the church has plenty of wealth from friar estates", result: "DIED: Branded a filibustero and excommunicated; seized by civil guards and exiled to Jolo." },
+                { text: "Pay half and claim the other half was eaten by locusts with no proof", result: "DIED: Accused of defrauding the Holy Mother Church; sentenced to public flogging at the tribunal." }
+            ],
+            history: "Failure to pay ecclesiastical tithes led to immediate charges of heresy or civil debt imprisonment."
+        },
+        {
+            era: "1886 - Royal Audiencia de Manila",
+            scenario: "You are summoned before the Oidor (Judge) of the Audiencia regarding a land boundary dispute. How do you present your petition?",
+            choices: [
+                { text: "Submit a formal petition written in Spanish on official stamped paper (papel sellado) through an authorized procurador", result: "SURVIVE" },
+                { text: "Walk directly up to the magistrate's bench and present an oral testimony in your local dialect", result: "DIED: Contempt of the Royal Court! You are remanded to the carcel de corte and receive 25 lashes." },
+                { text: "Bring a basket of prized mangos to the judge's private desk as a gift", result: "DIED: Charged with attempted bribery of a Crown judicial officer; sentenced to three years of penal labor." }
+            ],
+            history: "Colonial courts strictly required all formal petitions to be drafted on official revenue-stamped paper by certified legal intermediaries."
+        },
+        {
+            era: "1890 - Land Registry (Hacienda)",
+            scenario: "A wealthy monastic order claims ownership over your family's ancestral rice fields. What legal step must you take?",
+            choices: [
+                { text: "File a formal possessory information title (Información Posesoria) with Spanish legal representation", result: "SURVIVE" },
+                { text: "Chop down the boundary markers and plant your crops anyway", result: "DIED: Civil guards burn your house; you are exiled to Mindanao." },
+                { text: "Draft a response and fasten it to their door", result: "DIED: Nailing a written protest to the convento door is treated as public sedition and filibusterismo; tracked down by informants and executed at Bagumbayan." }
+            ],
+            history: "The 1894 Maura Law and earlier registration decrees heavily penalized undocumented physical resistance or written protests against monastic estate titles."
+        },
+        {
+            era: "1888 - Pueblo Casa Tribunal",
+            scenario: "The local Principalía convenes inside the tribunal to select a new Cabeza de Barangay. How do you participate as an ordinary townsperson?",
+            choices: [
+                { text: "Head to your farm and mind your own business", result: "SURVIVE" },
+                { text: "Walk into the municipal hall to cast your ballot", result: "DIED: Commoners possess no suffrage. The alguaciles arrest you for breaching elite electoral proceedings; flogged with 25 lashes for public insolence." },
+                { text: "Stand outside and shout nominations to the assembled electors", result: "DIED: Accused of inciting civil disorder and attempting to disrupt Crown administration; seized by the Guardia Civil and thrown into the calabozo." }
+            ],
+            history: "Suffrage in colonial Filipinas was strictly limited to the Principalía and supervised by the parish curate."
+        },
+
+        // Days 21-25: Public Health, Disasters & Ports
+        {
+            era: "1882 - Manila Cholera Outbreak",
+            scenario: "The Great Cholera Epidemic sweeps Luzon. Colonial quarantine guards cordon off your neighborhood. What is the safest survival choice?",
+            choices: [
+                { text: "Remain inside quarters and respect quarantine flags", result: "SURVIVE" },
+                { text: "Attend a healing novena at the paseo", result: "DIED: You mingle with infected crowds in the open promenade; contract acute cholera and perish within 24 hours." },
+                { text: "Clean the house and dump contaminated wash water at the closest stream", result: "DIED: Sanitary inspectors catch you polluting the public water source; arrested on the spot and bayoneted by quarantine sentries." }
+            ],
+            history: "During the 1882 cholera outbreak, colonial health boards strictly enforced localized cordons; public gatherings and improper waste disposal carried fatal risks."
+        },
+        {
+            era: "1880 - Post-Earthquake Manila / Pueblo Outskirts",
+            scenario: "Following severe earthquakes, you are constructing a bahay na bato. How do you structure the building to satisfy colonial building codes and survive tremors?",
+            choices: [
+                { text: "Build a flexible heavy-timber frame on the upper floor resting on a ground-floor stone base", result: "SURVIVE" },
+                { text: "Build pure, unreinforced solid stone walls all the way up to the roof tiles like a medieval castle", result: "DIED: The next tremor causes the unreinforced stone second floor to collapse instantly, crushing your entire household beneath masonry." },
+                { text: "Replace the wooden upper frame with heavy fired bricks and a solid concrete roof", result: "DIED: The heavy masonry roof collapses during a midnight earthquake; fatally crushed in your bed." }
+            ],
+            history: "Following devastating earthquakes, Spanish architectural decrees favored the Arquitectura Mestiza model: a stone lower level combined with an elastic, interlocking timber upper structure."
         },
         {
             era: "1872 - Municipal Gallera (Cockpit)",
@@ -645,24 +705,46 @@
             history: "Cockfighting was a heavily taxed government monopoly strictly restricted to authorized arenas on Sundays and official holidays."
         },
         {
-            era: "1892 - Ferrocarril de Manila a Dagupan (Tutuban Station)",
-            scenario: "You board the newly opened Manila-Dagupan railway. What ticket class and conduct is permitted for an Indio merchant without elite status?",
+            era: "1877 - Rural Pueblo Barrio",
+            scenario: "A total lunar eclipse darkens the night sky. Villagers begin shouting and banging copper gongs to ward off the serpent Bakunawa. What must you do?",
             choices: [
-                { text: "Purchase a standard Third-Class ticket and remain in the designated passenger car", result: "SURVIVE" },
-                { text: "Purchase a first-class velvet coach ticket and remain in the designated passenger car", result: "DIED: Railway guards discover you occupying elite seating reserved for Spanish Peninsulares; you are ejected from the train at full speed and fatally injured along the tracks." },
-                { text: "Ride atop the train roof to save ticket money", result: "DIED: Struck by a low stone railway bridge near Caloocan; decapitated instantly." }
+                { text: "Stay inside your home, light a blessed candle, and recite the rosary quietly", result: "SURVIVE" },
+                { text: "Join the crowd outside with an old horn to help make louder noise", result: "DIED: The parish priest arrives with guards. Branded a persistent practitioner of indigenous animist idolatry; sentenced to ecclesiastical penance in the stocks." },
+                { text: "Set fire to dry palm leaves in the plaza to signal the moon spirit", result: "DIED: Captured by cuadrilleros as an arsonist and apostate; imprisoned indefinitely in the provincial calabozo." }
             ],
-            history: "The Manila-Dagupan railway enforced rigid class demarcations; commoners who attempted to occupy first-class coaches faced forceful ejection."
+            history: "Spanish parish friars aggressively suppressed pre-colonial astronomical rituals, treating eclipse gonging as pagan heresy."
         },
         {
-            era: "1888 - Pueblo Casa Tribunal",
-            scenario: "The municipal scribe is compiling the annual padrón de almas (civil census registry). How many members of your household do you report?",
+            era: "1891 - Port Health Inspection (Sanidad Marítima)",
+            scenario: "Your trading vessel docks at Iloilo harbor from Singapore. The port sanitary officer boards to inspect passengers. What must the captain present?",
             choices: [
-                { text: "Declare every living resident accurately to match baptismal and tribute records", result: "SURVIVE" },
-                { text: "Declare the head of household only", result: "DIED: Listing only your frail grandfather to conceal the rest of your taxable kin causes authorities to sentence you and him to the limestone quarries, where you both succumb to exhaustion and dysentery." },
-                { text: "Declare only the men aged 16 and above", result: "DIED: Failing to declare the women and children while attempting to game the tribute registry is flagged by the local tax collector; arrested for subversion and sentenced to two years of fatal road labor." }
+                { text: "A clean Patente de Sanidad (health clearance certificate) issued at the port of departure", result: "SURVIVE" },
+                { text: "A case of fine imported wine for the port quarantine board", result: "DIED: Quarantined on shipboard without provisions under suspicion of yellow fever; perish of dysentery after 30 days at anchor." },
+                { text: "Disembark your crew secretly on a banka before the inspection begins", result: "DIED: Intercepted by armed harbor patrol; boat sunk and survivors imprisoned for violating maritime cordon decrees." }
             ],
-            history: "Colonial tax and civil registration laws cross-referenced parish baptismal rolls; underreporting dependents placed severe joint liability on both the informant and the declared head of the house."
+            history: "Stringent maritime health inspections and quarantine certifications were mandated at all open ports to prevent cholera and yellow fever outbreaks."
+        },
+
+        // Days 26-30: Martial Law, Ciphers & Insurrection
+        {
+            era: "1892 - Manila Port Customs",
+            scenario: "Colonial customs officers board your inter-island brigantine in Manila Bay searching for contraband. What must you conceal at all costs?",
+            choices: [
+                { text: "Banned copies of José Rizal's Noli Me Tángere and La Solidaridad", result: "SURVIVE" },
+                { text: "A crate of registered dried fish with official municipal tax stamps", result: "DIED: You hid the fish but left subversive political pamphlets on deck. Executed at Bagumbayan." },
+                { text: "A devotional rosary and a Tagalog prayer booklet", result: "DIED: You hid the prayer book while the inspector found anti-friar manifestos tucked in your belt. Arrested for filibusterismo." }
+            ],
+            history: "Possessing or circulating banned nationalist reform literature in the 1890s was treated as capital treason."
+        },
+        {
+            era: "1896 - Manila Outskirts",
+            scenario: "You hear whispering about secret meetings involving blood compacts and Katipunan triangles. What must you avoid doing at night?",
+            choices: [
+                { text: "Wandering into bamboo groves after the municipal curfew drum", result: "SURVIVE" },
+                { text: "Asking your parish priest if the rumors of revolution are true", result: "DIED: The friar alerts the Guardia Civil; you are tortured in Fort Santiago as a suspected conspirator." },
+                { text: "Carrying an unregistered bolo and an inkpot near military barracks", result: "DIED: Mistaken for an armed insurgent courier and executed on the spot without trial." }
+            ],
+            history: "During the 1896 revolutionary crisis, martial law made nocturnal movement near garrisons grounds for summary execution."
         },
         {
             era: "1880 - Pueblo Streets at Midnight",
@@ -685,14 +767,14 @@
             history: "Thoroughfares during religious processions were sacred zones; interrupting liturgical transit was treated as criminal blasphemy."
         },
         {
-            era: "1885 - Pueblo Plaza at Dusk",
-            scenario: "The church bells begin to toll the evening Ánimas / Toque de Queda across the pueblo square. What is your immediate course of action?",
+            era: "1895 - Provincial Military Quarters",
+            scenario: "You walk past the Casa Cuartel where two armed Guardia Civil sentries stand on post. What is the required protocol?",
             choices: [
-                { text: "Stop, cross yourself, recite the short prayer, and immediately head indoors before the final stroke fades", result: "SURVIVE" },
-                { text: "Finish your activity within closed premises", result: "DIED: Unlicensed gatherings and unauthorized business behind closed doors after curfew are treated as clandestine subversive meetings; raided by the Guardia Civil, you are bayoneted during the sweep." },
-                { text: "Continue your activity once the tolling bell stops", result: "DIED: Failing to clear the streets once the bells fall silent puts you in direct violation of the municipal curfew; intercepted by the night patrol and shot dead on suspicion of banditry." }
+                { text: "Remove your salakot or hat, lower your gaze, and keep walking without stopping", result: "SURVIVE" },
+                { text: "Stop and stare directly at the sentries while leaning against their post", result: "DIED: Struck in the ribs with a rifle butt for insolent provocation; detained on suspicion of espionage." },
+                { text: "Quickly run past their outpost so you do not disturb them", result: "DIED: Sentries assume you are an escaping fugitive; shot in the back without warning." }
             ],
-            history: "Evening church bells signaled mandatory civilian curfew; after the final chime, anyone found in the streets or conducting unauthorized private gatherings faced summary military enforcement."
+            history: "Colonial military decrees mandated that natives perform 'el saludo de sombrero' (removing headwear) when passing within sight of military posts and officers."
         }
     ];
 
@@ -721,7 +803,7 @@
                     <strong>Spanish colonial Filipinas (circa 1565–1898)</strong>. 
                     <br><br>
                     You are now bound by strict curfews, monastic decrees, forced labor and caste etiquette. One wrong assumption or breach of protocol will result in immediate execution, fatal disease or penal exile.
-                    <span class="intro-challenge">Can you survive all 25 trials?</span>
+                    <span class="intro-challenge">Can you survive all 30 days (1 full month)?</span>
                 </div>
                 <button class="action-btn" onclick="startGameFromIntro()">Enter</button>
             </div>
@@ -734,9 +816,7 @@
     }
 
     function startNewGame() {
-        const poolCopy = [...defaultQuestionPool];
-        shuffle(poolCopy);
-        sessionDeck = poolCopy;
+        sessionDeck = [...masterQuestionPool];
         currentStep = 0;
         daysSurvived = 0;
         renderScenario();
@@ -752,10 +832,11 @@
                 <div class="death-screen" style="border-color: var(--gold); background: #fdfaf0;">
                     <div class="header-tag" style="color: var(--gold);">Gloria Y Victoria</div>
                     <div class="death-title" style="color: var(--gold);">Sobreviviente!</div>
-                    <p style="font-size: 1.1rem; margin: 1rem 0; line-height: 1.6;">
+                    <p style="font-size: 1.05rem; margin: 1rem 0; line-height: 1.6;">
                         Against all odds, you navigated the decrees, curfews, tithes, and inquisitions. 
-                        <strong>You survived all 25 trials of the Empire!</strong>
+                        <strong>You survived 30 full days (1 month) of Spanish Colonial Life!</strong>
                     </p>
+                    <div class="share-prompt">Dare your friends to beat your 30-day run:</div>
                     <button class="action-btn" style="background: var(--border);" onclick="startNewGame()">Play Again</button>
                 </div>
             `;
@@ -768,7 +849,7 @@
         container.innerHTML = `
             <div class="era-header">${currentQ.era}</div>
             <div id="day-counter" class="day-counter-box ${animateGreen ? 'ding-green' : ''}">
-                Scenario ${daysSurvived + 1}/${totalDays} (Score: ${daysSurvived})
+                Day ${daysSurvived + 1} of 30 (Score: ${daysSurvived} Days)
             </div>
             <div class="divider"></div>
             <div class="scenario-box">${currentQ.scenario}</div>
@@ -810,37 +891,62 @@
                 <div class="death-reason"><strong>Cause of Death:</strong> ${deathReason.replace('DIED: ', '')}</div>
                 <div class="history-note"><strong>Historical Reality:</strong> ${questionData.history}</div>
                 <div style="margin-top: 1rem; font-size: 0.95rem; font-weight: bold; color: var(--border);">
-                    You survived ${daysSurvived} Scenarios.
+                    You survived only ${daysSurvived} ${daysSurvived === 1 ? 'Day' : 'Days'} in Spanish Colonial Life.
                 </div>
+                <div class="share-prompt">Can your friends survive longer than ${daysSurvived} days?</div>
                 <button class="action-btn" onclick="startNewGame()">Try Again</button>
             </div>
         `;
     }
 
     function getShareText() {
-        if (daysSurvived > 0) {
-            return `I survived ${daysSurvived} scenarios in 'Survive the Empire: Spanish Colonial Life!' Can you beat my score?`;
+        if (daysSurvived >= 30) {
+            return `I conquered all 30 days and survived a full month of Spanish colonial life! Think you can make it out alive? #SurviveTheEmpire`;
+        } else if (daysSurvived > 0) {
+            return `I survived only ${daysSurvived} ${daysSurvived === 1 ? 'day' : 'days'} in Spanish colonial life before meeting my demise. Can you survive a full month? #SurviveTheEmpire`;
         }
-        return `Can you survive Spanish colonial life? Test your survival skills in 'Survive the Empire'!`;
+        return `Can you survive 30 days in Spanish colonial life? Test your survival instincts in 'Survive the Empire'! #SurviveTheEmpire`;
+    }
+
+    function getShareUrl() {
+        return window.top !== window.self ? document.referrer || window.location.href : window.location.href;
+    }
+
+    function shareNative() {
+        const shareData = {
+            title: "Survive the Empire: Spanish Colonial Life",
+            text: getShareText(),
+            url: getShareUrl()
+        };
+        if (navigator.share) {
+            navigator.share(shareData).catch(() => {});
+        } else {
+            copyGameLink();
+        }
     }
 
     function shareFacebook() {
-        const url = encodeURIComponent(window.location.href);
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        const url = encodeURIComponent(getShareUrl());
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(getShareText())}`, '_blank', 'width=600,height=400');
     }
 
     function shareX() {
-        const url = encodeURIComponent(window.location.href);
+        const url = encodeURIComponent(getShareUrl());
         const text = encodeURIComponent(getShareText());
         window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=600,height=400');
     }
 
+    function shareWhatsApp() {
+        const text = encodeURIComponent(`${getShareText()}\n${getShareUrl()}`);
+        window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
     function copyGameLink() {
-        const shareText = `${getShareText()} ${window.location.href}`;
+        const shareText = `${getShareText()} ${getShareUrl()}`;
         navigator.clipboard.writeText(shareText).then(() => {
-            alert("Game link and score copied to clipboard!");
+            alert("Score and link copied to clipboard!");
         }).catch(() => {
-            alert("Failed to copy link. Please share the URL directly.");
+            alert("Failed to copy link. Please copy directly: " + getShareUrl());
         });
     }
 
@@ -849,4 +955,3 @@
 
 </body>
 </html>
-
