@@ -356,6 +356,9 @@ bgMusic.volume = 0.14;
 
     const clickSound = new Audio('andressamd-pop-click-576326.mp3');
 clickSound.volume = 1.0;
+
+const dingSound = new Audio('chrysalyn-professional-business-app-ringtone-variant-562422.mp3');
+dingSound.volume = 0.8;
     
     async function loadScenarios() {
         try {
@@ -487,6 +490,13 @@ clickSound.play().catch(() => {});
         }
 
         if (selected.survival) {
+            dingSound.currentTime = 0;
+            dingSound.play().catch(() => {});
+            
+            if (isBgmOn) {
+                bgMusic.currentTime = 0;
+        }
+            
             currentDay++;
             if (currentDay >= 30) {
                 if (typeof gtag === 'function') {
