@@ -366,10 +366,18 @@ body {
     }
 
     function toggleBGM() {
-        isBgmOn = !isBgmOn;
-        document.getElementById('music-toggle').innerText = `Music: ${isBgmOn ? 'ON' : 'OFF'}`;
+    const music = document.getElementById('bg-music');
+
+    if (isBgmOn) {
+        music.pause();
+        isBgmOn = false;
+    } else {
+        music.play();
+        isBgmOn = true;
     }
 
+    document.getElementById('music-toggle').innerText = `Music: ${isBgmOn ? 'ON' : 'OFF'}`;
+}
     function goHome() {
         currentDay = 0;
         renderIntroScreen();
