@@ -353,6 +353,9 @@ body {
     const bgMusic = new Audio('sonican-spanish-guitar-30-seconds-latin-cinematic-515434.mp3');
 bgMusic.loop = true;
 bgMusic.volume = 0.14;
+
+    const clickSound = new Audio('andressamd-pop-click-576326.mp3');
+clickSound.volume = 0.4;
     
     async function loadScenarios() {
         try {
@@ -463,6 +466,9 @@ for (let i = s.choices.length - 1; i > 0; i--) {
     `;
 }
     function handleChoice(index) {
+        clickSound.currentTime = 0;
+clickSound.play().catch(() => {});
+        
         const s = shuffledScenarios[currentDay];
         const selected = s.choices[index];
 
