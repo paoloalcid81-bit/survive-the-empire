@@ -376,15 +376,17 @@ body {
     }
 
     function renderIntroScreen() {
-        const container = document.getElementById('game-content');
-        container.innerHTML = `
-            <div class="intro-box">
-                Every day, you wake up in a different time between 1565 and 1898 in <strong>Spanish-era Filipinas</strong>. Displaced across time, you are bound by strict curfews, monastic decrees, forced labor, and caste etiquette.
-                <span class="intro-challenge">Can you survive 30 time shifts and return to the present day?</span>
-            </div>
+    const container = document.getElementById('game-content');
+    container.innerHTML = `
+        <div class="intro-box">
+            Every day, you wake up in a different time between 1565 and 1898 in <strong>Spanish-era Filipinas</strong>. Displaced across time, you are bound by strict curfews, monastic decrees, forced labor, and caste etiquette.
+            <span class="intro-challenge">Can you survive 30 time shifts and return to the present day?</span>
+        </div>
+        <div style="margin-top: auto; padding-top: 1rem;">
             <button class="action-btn" onclick="startNewGame()">Enter the Shift</button>
-        `;
-    }
+        </div>
+    `;
+}
 
     function startNewGame() {
         currentDay = 0;
