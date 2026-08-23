@@ -535,7 +535,7 @@ clickSound.play().catch(() => {});
                 <div class="cert-sub">Gobierno Superior de Filipinas</div>
                 <hr class="cert-divider">
                 <div class="cert-body">
-                    <p><strong>Days Survived:</strong> Shift ${day} of 30</p>
+                    <p><strong>Days Survived:</strong> ${day - 1}</p>
                     <p><strong>Cause of Demise:</strong> ${cause}</p>
                     <div class="cert-trivia">
                         <strong>Historical Fact:</strong> ${trivia}
@@ -546,7 +546,7 @@ clickSound.play().catch(() => {});
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
-                <button class="action-btn" onclick="startNewGame()">Try Another Timeline</button>
+                <button class="action-btn" onclick="startNewGame()">Play Again</button>
             </div>
         `;
     }
