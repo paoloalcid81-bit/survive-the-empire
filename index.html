@@ -318,10 +318,6 @@ body {
     </style>
 </head>
 <body>
-
-<audio id="bg-music" loop preload="auto">
-    <source src="sonican-spanish-guitar-30-seconds-latin-cinematic-515434.mp3" type="audio/mpeg">
-</audio>
     
 <div class="game-wrapper">
     <div class="top-nav">
@@ -354,6 +350,10 @@ body {
     let shuffledScenarios = [];
     let isBgmOn = false;
 
+    const bgMusic = new Audio('sonican-spanish-guitar-30-seconds-latin-cinematic-515434.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.35;
+    
     async function loadScenarios() {
         try {
             const res = await fetch('scenarios.json');
@@ -369,19 +369,26 @@ body {
         }
     }
 
-    function toggleBGM() {
-    const music = document.getElementById('bg-music');
+function toggleBGM() {
+    const btn = document.getElementById('music-toggle');
 
     if (isBgmOn) {
-        music.pause();
+        bgMusic.pause();
         isBgmOn = false;
+        btn.innerText = 'Music: OFF';
     } else {
-        music.play();
-        isBgmOn = true;
+        bgMusic.play()
+            .then(() => {
+                isBgmOn = true;
+                btn.innerText = 'Music: ON';
+            })
+            .catch(error => {
+                console.error('Music failed to play:', error);
+                alert('Music could not be loaded.');
+            });
     }
-
-    document.getElementById('music-toggle').innerText = `Music: ${isBgmOn ? 'ON' : 'OFF'}`;
 }
+    
     function goHome() {
         currentDay = 0;
         renderIntroScreen();
