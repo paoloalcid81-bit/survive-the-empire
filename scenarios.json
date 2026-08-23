@@ -1,77 +1,626 @@
 [
   {
-    "id": "1849-claveria-decree",
+    "id": "q01-id-checkpoint",
+    "year": "1884 — Pueblo Streets, Manila",
+    "image": "images/checkpoint.jpg",
+    "sourceCitation": "Real Decreto de 1884; Sistema de Cédulas Personales",
+    "lore": "The Guardia Civil stops you at dusk outside the town plaza and demands identification. What do you present?",
+    "choices": [
+      {
+        "text": "Present your official paper Cédula Personal tax certificate.",
+        "survival": true
+      },
+      {
+        "text": "Pull out a laminated Postal ID card from your modern wallet.",
+        "survival": false,
+        "cause": "Accused of practicing witchcraft with demonic synthetic talismans and declared a vagamundo. You die of cholera in the colonial stockade.",
+        "trivia": "The 1884 Royal Decree replaced the tribute system with the mandatory paper Cédula Personal. Failing to produce valid paper documents resulted in immediate detention and hard labor."
+      },
+      {
+        "text": "Slip the patrol officer a modern coin to discreetly let you pass.",
+        "survival": false,
+        "cause": "Arrested on the spot for circulating illicit foreign currency and attempting to bribe colonial authorities. Summarily executed for treason.",
+        "trivia": "Colonial monetary laws strictly regulated currency circulation; possession of unauthorized coins or attempting to bribe the Guardia Civil carried severe penal penalties."
+      }
+    ]
+  },
+  {
+    "id": "q02-cholera-remedy",
+    "year": "1882 — Epidemic Cordons, Tondo",
+    "image": "images/cholera.jpg",
+    "sourceCitation": "Gaceta de Manila (1882); Archivo de la Real Audiencia",
+    "lore": "Asiatic cholera sweeps through the parish. You feel severely dehydrated and need water immediately. What is your course of action?",
+    "choices": [
+      {
+        "text": "Boil well water thoroughly inside your quarters and remain strictly within parish quarantine cordons.",
+        "survival": true
+      },
+      {
+        "text": "Drink cool river water from the Pasig to quickly rehydrate after fleeing the cordon.",
+        "survival": false,
+        "cause": "Contracted acute Asiatic cholera from municipal contamination and perished within twelve hours.",
+        "trivia": "The 1882 cholera epidemic devastated Manila due to contaminated river and shallow well water; boiling water was one of the few effective survival methods."
+      },
+      {
+        "text": "Attempt to cross the armed river barricade after evening curfew to seek a clinic.",
+        "survival": false,
+        "cause": "Shot on sight by the Guardia Civil enforcing the lethal sanitary cordon around the arrabal.",
+        "trivia": "Quarantine cordons were military checkpoints where sentries were authorized to use lethal force against anyone breaking night curfews."
+      }
+    ]
+  },
+  {
+    "id": "q03-claveria-registration",
     "year": "1849 — Provincial Registry, Ilocos",
     "image": "images/claveria.jpg",
     "sourceCitation": "Catálogo Alfabético de Apellidos (1849), Archivo Histórico Nacional",
-    "lore": "Governor-General Narciso Clavería y Zaldúa issues a decree standardizing native surnames. You are summoned by the Cabeza de Barangay to register your household tribute list.",
+    "lore": "Governor-General Clavería decrees the standardization of surnames. You are summoned by the Cabeza de Barangay to register your household. What name do you provide?",
     "choices": [
       {
-        "text": "Insist on retaining your pre-colonial ancestral patronym without Christian catalog names.",
-        "survival": false,
-        "cause": "Sentenced to hard labor in the Cavite naval arsenals for civil insubordination.",
-        "trivia": "The 1849 decree strictly enforced cataloged names to prevent polo labor evasion and fix tribute registers."
+        "text": "Accept an assigned surname selected directly from the official Catálogo Alfabético.",
+        "survival": true
       },
       {
-        "text": "Accept an assigned surname from the catalog and register your household tribute list.",
-        "survival": true
+        "text": "Insist on giving your real 21st-century hyphenated legal name and claim you are already registered in civil registries.",
+        "survival": false,
+        "cause": "Deemed mentally deranged and a subversive agitator resisting colonial governance. Exiled to hard labor in the Cavite naval arsenals.",
+        "trivia": "The 1849 Clavería decree ended arbitrary indigenous naming practices to fix tribute evasion; refusal to accept cataloged surnames was punished as civil rebellion."
+      },
+      {
+        "text": "Refuse to register entirely, asserting constitutional rights to privacy.",
+        "survival": false,
+        "cause": "Classified as an uncataloged outlaw (tulisán) and sentenced to penal servitude in Guam.",
+        "trivia": "Unregistered individuals were stripped of legal status, branded as vagabonds or bandits, and faced indefinite penal exile."
       }
     ]
   },
   {
-    "id": "1882-cholera-manila",
-    "year": "1882 — Manila Epidemic Cordons",
-    "image": "images/cholera.jpg",
-    "sourceCitation": "Gaceta de Manila (1882); Archivo de la Real Audiencia",
-    "lore": "Asiatic cholera sweeps through Tondo. Spanish health authorities place armed cordons around your arrabal, forbidding movement beyond parish borders.",
-    "choices": [
-      {
-        "text": "Attempt to sneak across the Pasig River barricade after evening curfew.",
-        "survival": false,
-        "cause": "Shot on sight by the Guardia Civil enforcing the sanitary cordon.",
-        "trivia": "During the 1882 epidemic, armed patrols strictly enforced lethal quarantine boundaries around Manila parishes."
-      },
-      {
-        "text": "Boil river water, respect the curfew, and remain inside the cordoned parish boundary.",
-        "survival": true
-      }
-    ]
-  },
-  {
-    "id": "1834-manila-port",
-    "year": "1834 — Opening of the Port of Manila",
-    "image": "images/port_manila.jpg",
-    "sourceCitation": "Real Decreto de 1834; Records of the Real Aduana",
-    "lore": "Royal decree opens Manila to international commerce. Foreign merchants establish trading houses outside the Intramuros walls. A British trading clerk offers you an unvetted currency exchange.",
-    "choices": [
-      {
-        "text": "Conduct unauthorized coin arbitrage outside the supervision of the Real Aduana.",
-        "survival": false,
-        "cause": "Arrested for illegal currency speculation and sentenced to penal servitude in Guam.",
-        "trivia": "The Royal Customs (Real Aduana) heavily regulated all bullion and foreign trade transactions under penalty of exile."
-      },
-      {
-        "text": "Conduct transactions strictly in official Silver Pesos through certified brokers.",
-        "survival": true
-      }
-    ]
-  },
-  {
-    "id": "1896-balintawak-martial-law",
-    "year": "1896 — Cry of Balintawak & Martial Law",
+    "id": "q04-balintawak-raid",
+    "year": "1896 — Manila Arrabales",
     "image": "images/martial_law.jpg",
     "sourceCitation": "Bando de Guerra del Gobernador General Blanco (Agosto 1896)",
-    "lore": "Governor-General Ramón Blanco proclaims martial law over eight provinces. Guardia Civil patrols conduct warrantless searches for Katipunan membership papers.",
+    "lore": "Martial law is declared across eight provinces. Guardia Civil patrols conduct warrantless midnight house searches for Katipunan paraphernalia. How do you prepare?",
     "choices": [
       {
-        "text": "Keep unregistered Masonic pamphlets and handwritten cipher sheets in your wooden chest.",
-        "survival": false,
-        "cause": "Summarily convicted of treason and executed by firing squad at Bagumbayan.",
-        "trivia": "Suspected subversives caught with illicit pamphlets faced immediate military tribunal and execution in 1896."
+        "text": "Burn suspicious private correspondences, securely conceal modern items, and ensure your Cédula is stamped.",
+        "survival": true
       },
       {
-        "text": "Destroy suspicious private correspondences and ensure your Cédula Personal is stamped.",
+        "text": "Film the Guardia Civil search on your smartphone to document human rights abuses.",
+        "survival": false,
+        "cause": "Your device is seized as an instrument of black sorcery and treason. Summarily executed by firing squad at Bagumbayan.",
+        "trivia": "During the 1896 crackdown, suspected subversives caught with unexplained items or writings faced immediate drumhead court-martials."
+      },
+      {
+        "text": "Keep printed pocket pamphlets in an unlocked chest, planning to explain civil liberties to the inspecting officer.",
+        "survival": false,
+        "cause": "Arrested on treason charges as an active Katipunan conspirator and condemned to death in Fort Santiago dungeons.",
+        "trivia": "Possession of any coded letters, masonic emblems, or unauthorized circulars during martial law resulted in summary execution."
+      }
+    ]
+  },
+  {
+    "id": "q05-polo-y-servicio",
+    "year": "1609 — Polo Labor Conscription, Bulacan",
+    "image": "images/polo.jpg",
+    "sourceCitation": "Leyes de Indias; Polo y Servicios Reales",
+    "lore": "The local Alcalde Mayor drafts all native males into polo y servicio for 40 days of timber cutting to supply the Manila Galleon shipyards. How do you respond?",
+    "choices": [
+      {
+        "text": "Pay the official falla fee in silver or report for log-hauling labor with your tools.",
         "survival": true
+      },
+      {
+        "text": "Quote international labor laws and demand compensation for involuntary servitude.",
+        "survival": false,
+        "cause": "Publicly flogged 50 lashes for sedition and chained to an oar on a colonial galley ship.",
+        "trivia": "Polo y servicio was mandatory corvée labor for male natives aged 16 to 60. Refusal without paying the steep exemption tax (falla) was treated as rebellion."
+      },
+      {
+        "text": "Flee to the forested mountains without tribute clearance.",
+        "survival": false,
+        "cause": "Branded a remontado rebel and hunted down by Spanish indigenous tracker battalions.",
+        "trivia": "Fleeing polo labor placed individuals outside colonial law, making them subject to capture and lifelong enslavement."
+      }
+    ]
+  },
+  {
+    "id": "q06-church-angelus",
+    "year": "1775 — Pueblo Plaza, Laguna",
+    "image": "images/angelus.jpg",
+    "sourceCitation": "Manual Parroquial; Reglas Eclesiásticas de Filipinas",
+    "lore": "At 6:00 PM, the church bells begin ringing the Angelus across the town plaza while you are walking. What do you do?",
+    "choices": [
+      {
+        "text": "Halt immediately, remove your hat, kneel or bow your head, and recite the prayer.",
+        "survival": true
+      },
+      {
+        "text": "Keep walking quickly toward your destination while wearing headphones.",
+        "survival": false,
+        "cause": "Spotted by the parish fiscal, struck with a rattan cane for public blasphemy, and imprisoned in the parish carcel.",
+        "trivia": "Stopping and bowing for the Angelus was strictly enforced by church fiscals; ignoring the bells was considered an explicit act of heresy."
+      },
+      {
+        "text": "Argue with the parish curate about freedom of religion and separation of church and state.",
+        "survival": false,
+        "cause": "Turned over to the Holy Office of the Inquisition and condemned to penal galley labor.",
+        "trivia": "The Catholic Church held extensive civic authority in the colonies; denying church supremacy resulted in severe inquisitorial punishment."
+      }
+    ]
+  },
+  {
+    "id": "q07-galleon-trade-speculation",
+    "year": "1785 — Royal Customs, Manila Bay",
+    "image": "images/port_manila.jpg",
+    "sourceCitation": "Reglamento del Real Consulado de Manila",
+    "lore": "The Acapulco Galleon has arrived in port. A foreign merchant offers you speculative boleta shares to claim silk and porcelain cargo without a royal permit. How do you act?",
+    "choices": [
+      {
+        "text": "Decline the deal and conduct all currency and trade exchanges exclusively through the authorized Real Consulado.",
+        "survival": true
+      },
+      {
+        "text": "Attempt to transfer modern digital funds or issue a private handwritten promissory note for cargo space.",
+        "survival": false,
+        "cause": "Charged with fraudulent counterfeiting and high treason against the Royal Treasury. Sentenced to hard labor in the Marianas.",
+        "trivia": "Galleon cargo space was strictly rationed via royal boletas issued only to favored Spanish residents, widows, and clergy."
+      },
+      {
+        "text": "Purchase the unregistered boletas and attempt to sell the Chinese silk directly out of a street stall.",
+        "survival": false,
+        "cause": "Goods confiscated by the Real Aduana; convicted of contraband trade and sent to penal servitude.",
+        "trivia": "Unregistered galleon cargo trade was heavily prosecuted to preserve the crown's monopoly on Mexican silver exchange."
+      }
+    ]
+  },
+  {
+    "id": "q08-bandala-seizure",
+    "year": "1660 — Bandala Tribute Levy, Pampanga",
+    "image": "images/harvest.jpg",
+    "sourceCitation": "Sistema de Bandala; Crónicas Coloniales de Filipinas",
+    "lore": "Crown officials arrive to requisition your entire rice harvest under the Bandala system, offering promissory paper notes that will take years to redeem. What do you do?",
+    "choices": [
+      {
+        "text": "Surrender the required quota of grain and retain the royal promissory receipt.",
+        "survival": true
+      },
+      {
+        "text": "Threaten to file a consumer protection lawsuit against the crown for unfair trade practices.",
+        "survival": false,
+        "cause": "Strung up on the plaza gallows as an instigator of agrarian revolt against the Spanish Crown.",
+        "trivia": "The Bandala forced-sale quota system frequently drove provinces into near-famine and sparked major revolts like the Maniago Uprising of 1660."
+      },
+      {
+        "text": "Burn down the granary so Spanish officials cannot seize your harvest.",
+        "survival": false,
+        "cause": "Convicted of economic sabotage against the Real Hacienda and garroted in the town square.",
+        "trivia": "Destroying crops to evade the Bandala levy was punished by public execution and confiscation of all family properties."
+      }
+    ]
+  },
+  {
+    "id": "q09-sumptuary-laws",
+    "year": "1820 — Intramuros Gates, Manila",
+    "image": "images/intramuros.jpg",
+    "sourceCitation": "Leyes de Indias: De las clases y trajes",
+    "lore": "You prepare to pass through the gates into Intramuros. What attire do you wear?",
+    "choices": [
+      {
+        "text": "Wear an untucked sheer baro made of piña fiber without pockets and carry your travel pass.",
+        "survival": true
+      },
+      {
+        "text": "Wear a modern European tailored wool suit with tucked-in shirt and necktie.",
+        "survival": false,
+        "cause": "Arrested at the gate for violating sumptuary caste regulations and impersonating a Peninsular noble.",
+        "trivia": "Colonial dress codes required natives to keep their shirts untucked and transparent without pockets to prevent weapons concealment and mark social hierarchy."
+      },
+      {
+        "text": "Walk through the gate wearing modern sunglasses and jeans, ignoring the gate guards.",
+        "survival": false,
+        "cause": "Struck down with halberds by the Puerta Real sentries for failing to uncover your head and bow.",
+        "trivia": "Entering Intramuros required natives to show deferential posture, remove head coverings, and present valid passes."
+      }
+    ]
+  },
+  {
+    "id": "q10-limpieza-de-sangre",
+    "year": "1790 — Santa Potenciana, Manila",
+    "image": "images/parish.jpg",
+    "sourceCitation": "Estatutos de Limpieza de Sangre; Archivo Arquidiocesano",
+    "lore": "You apply for a clerk position at a royal administrative tribunal and are asked to prove your purity of blood (limpieza de sangre). How do you answer?",
+    "choices": [
+      {
+        "text": "Present certified baptismal records from your local parish confirming legitimate Christian ancestry.",
+        "survival": true
+      },
+      {
+        "text": "Hand them a printed DNA test certificate showing your ancestral ethnic percentages.",
+        "survival": false,
+        "cause": "Denounced for using alchemical sorcery documents; arrested by the Inquisition for occult fraud.",
+        "trivia": "Colonial bureaucracies only accepted formal ecclesiastical lineage records signed by parish priests to verify blood purity and orthodoxy."
+      },
+      {
+        "text": "Declare that all races are equal under secular human rights declarations.",
+        "survival": false,
+        "cause": "Condemned as a radical French Enlightenment subversive and sentenced to lifelong exile in Mindanao.",
+        "trivia": "Egalitarian philosophy was fiercely suppressed in Spanish territories following the 1789 French Revolution."
+      }
+    ]
+  },
+  {
+    "id": "q11-san-lazaro-quarantine",
+    "year": "1803 — San Lazaro Hospital, Manila",
+    "image": "images/hospital.jpg",
+    "sourceCitation": "Reglamento de la Real Expedición Filantrópica de la Vacuna",
+    "lore": "The Royal Balmis Expedition arrives with the live smallpox vaccine. You develop a mild rash and officials arrive at your home. How do you proceed?",
+    "choices": [
+      {
+        "text": "Submit to inspection by the municipal protomédico and accept quarantine or vaccination.",
+        "survival": true
+      },
+      {
+        "text": "Pop modern antibiotic tablets from your bag in front of the physicians and refuse isolation.",
+        "survival": false,
+        "cause": "Accused of ingesting lethal witch powders; detained indefinitely in the asylum wards of San Lazaro.",
+        "trivia": "Colonial medical authorities were deeply suspicious of unvetted concoctions, viewing unknown pills as either poisons or sorcery."
+      },
+      {
+        "text": "Bribe the health inspector with modern dollar bills to falsify your health certificate.",
+        "survival": false,
+        "cause": "Imprisoned for counterfeiting worthless non-metallic currency and violating public sanitation laws.",
+        "trivia": "Paper bank notes had no legal tender status in the early 19th-century Philippines, where silver real and peso coins were paramount."
+      }
+    ]
+  },
+  {
+    "id": "q12-cavite-mutiny",
+    "year": "1872 — Cavite Naval Arsenal",
+    "image": "images/mutiny.jpg",
+    "sourceCitation": "Sumaria sobre la Sublevación de Cavite de 1872",
+    "lore": "Artillery workers mutiny at Fort San Felipe after Governor-General Izquierdo strips their tax exemption. Soldiers knock on your workshop door demanding allegiance. What do you do?",
+    "choices": [
+      {
+        "text": "Barricade your shop, remain completely silent indoors, and avoid signing any petitions or documents.",
+        "survival": true
+      },
+      {
+        "text": "Step into the square with a megaphone to organize a peaceful labor mediation committee.",
+        "survival": false,
+        "cause": "Executed immediately by Spanish marine infantry retaking the fort without trial.",
+        "trivia": "The 1872 Cavite Mutiny was suppressed with ruthless force, leading to widespread summary executions and the garrote execution of Gomburza."
+      },
+      {
+        "text": "Sign the rebel manifestos believing you can plead worker immunity in civic court later.",
+        "survival": false,
+        "cause": "Sentenced to capital execution for high treason against the Spanish Crown.",
+        "trivia": "Anyone associated with the mutineers' petitions was rounded up, subjected to military courts, and either executed or exiled to the Marianas."
+      }
+    ]
+  },
+  {
+    "id": "q13-tulisanes-ambush",
+    "year": "1855 — Mountain Trail, Mount Arayat",
+    "image": "images/bandits.jpg",
+    "sourceCitation": "Informes de la Guardia Civil sobre Bandolerismo",
+    "lore": "Your transport cart is ambushed on a remote pass by armed tulisán bandits wielding machetes and flintlocks. How do you react?",
+    "choices": [
+      {
+        "text": "Surrender your physical baggage, keep your eyes downcast, and offer no armed resistance.",
+        "survival": true
+      },
+      {
+        "text": "Reach for your pocket pepper spray to incapacitate the bandit leader.",
+        "survival": false,
+        "cause": "Hacked down instantly by accompanying bandits before you can discharge the canister.",
+        "trivia": "Colonial highwaymen (tulisanes) operated in large, lethal gangs along provincial trade roads; resisting without firearms was almost invariably fatal."
+      },
+      {
+        "text": "Tell them police GPS tracking is already monitoring your position.",
+        "survival": false,
+        "cause": "Taken hostage, tortured for explanations of invisible tracking demons, and killed when no ransom arrives.",
+        "trivia": "Bandits rarely kept captives alive if ransom or immediate compliance was not secured promptly."
+      }
+    ]
+  },
+  {
+    "id": "q14-earthquake-manila",
+    "year": "1863 — Intramuros Cathedral Plaza",
+    "image": "images/earthquake.jpg",
+    "sourceCitation": "Relación del Terremoto de Manila de 1863",
+    "lore": "A catastrophic earthquake hits during Corpus Christi eve. Masonry crashes down from the Manila Cathedral. Where do you take shelter?",
+    "choices": [
+      {
+        "text": "Flee immediately into the center of the open plaza away from stone walls and heavy tile roofs.",
+        "survival": true
+      },
+      {
+        "text": "Run inside the cathedral seeking sanctuary beneath the massive stone dome.",
+        "survival": false,
+        "cause": "Crushed when the cathedral's heavy stone roof and bell towers collapsed entirely into the nave.",
+        "trivia": "The 1863 Manila earthquake flattened the Manila Cathedral and the Governor's Palace, killing hundreds sheltered inside stone structures."
+      },
+      {
+        "text": "Climb up to the balcony of a nearby multi-story stone bahay-na-bato to film the collapse.",
+        "survival": false,
+        "cause": "Perished when the upper brick walls collapsed into the street.",
+        "trivia": "Spanish-era unreinforced stone buildings were notorious death traps during seismic events before wood-frame earthquake designs were adopted."
+      }
+    ]
+  },
+  {
+    "id": "q15-chinese-parian-expulsion",
+    "year": "1762 — The Parian, Extramuros Manila",
+    "image": "images/parian.jpg",
+    "sourceCitation": "Bando de Expulsión del Gobernador Simón de Anda y Salazar",
+    "lore": "During the British occupation of Manila, Spanish forces under Simón de Anda order all trade with non-Spanish merchants halted under pain of death. What do you do?",
+    "choices": [
+      {
+        "text": "Relocate strictly to loyalist Spanish zones in Bacolor, Pampanga, and observe strict military curfews.",
+        "survival": true
+      },
+      {
+        "text": "Set up a black-market trading stand between British soldiers and local Parian merchants.",
+        "survival": false,
+        "cause": "Captured by Anda's loyalist guerrillas and hanged as an economic collaborator with the British.",
+        "trivia": "Simón de Anda declared martial law against any residents collaborating with British occupation forces or trade networks."
+      },
+      {
+        "text": "Wave a white flag and declare yourself an internationally protected neutral civilian.",
+        "survival": false,
+        "cause": "Cut down in the crossfire during the Spanish counter-offensive against the British-held bastions.",
+        "trivia": "The Geneva Conventions did not exist in the 18th century; civilians caught between besieging forces received no formal legal protections."
+      }
+    ]
+  },
+  {
+    "id": "q16-tribute-coinage",
+    "year": "1730 — Real Hacienda Office, Vigan",
+    "image": "images/coins.jpg",
+    "sourceCitation": "Instrucciones de Cobranza del Real Tributo",
+    "lore": "The tribute collector arrives at your village. You must pay your semestral tribute of 8 silver reales. What tender do you provide?",
+    "choices": [
+      {
+        "text": "Hand over official Spanish silver pillar dollars (reales) or accepted agricultural produce in kind.",
+        "survival": true
+      },
+      {
+        "text": "Attempt to pay using modern plastic credit cards or polymer banknotes.",
+        "survival": false,
+        "cause": "Denounced for attempting to defraud the Real Hacienda with cursed artificial slips; sentenced to the pillory.",
+        "trivia": "Tribute was strictly calculated in silver reales or official commodities like rice, wax, and cotton cloth according to royal tariff tables."
+      },
+      {
+        "text": "Offer copper buttons and claim they are fractional digital fiat tokens.",
+        "survival": false,
+        "cause": "Convicted of counterfeiting royal currency and sentenced to 100 lashes and mining labor.",
+        "trivia": "Counterfeiting or debasing coinage was considered an offense against the crown's sovereign person, punishable by mutilation or execution."
+      }
+    ]
+  },
+  {
+    "id": "q17-banned-literature",
+    "year": "1888 — Customhouse Wharf, Manila",
+    "image": "images/books.jpg",
+    "sourceCitation": "Comisión Permanente de Censura de Manila",
+    "lore": "You are arriving on a steamship from Hong Kong carrying a package containing Jose Rizal's *Noli Me Tángere*. Port censors board for an inspection. What do you do?",
+    "choices": [
+      {
+        "text": "Secretly drop the package into the sea before the inspection team reaches your berth.",
+        "survival": true
+      },
+      {
+        "text": "Show the inspector the book while citing constitutional freedom of speech and the press.",
+        "survival": false,
+        "cause": "Arrested on the spot by the Permanent Commission of Censorship for high treason and subversion.",
+        "trivia": "The Permanent Commission of Censorship strictly banned Rizal's novels; possession carried immediate penal exile or imprisonment."
+      },
+      {
+        "text": "Offer to sell copies of the novel to fellow passengers on the open deck.",
+        "survival": false,
+        "cause": "Reported by an undercover informant; condemned to indefinite incarceration in the penal colony of Puerto Princesa.",
+        "trivia": "The Spanish administration utilized extensive networks of paid informers (confidentes) in Manila ports to intercept forbidden texts."
+      }
+    ]
+  },
+  {
+    "id": "q18-encomienda-forced-supply",
+    "year": "1591 — Encomienda de Betis, Pampanga",
+    "image": "images/encomienda.jpg",
+    "sourceCitation": "Relación de las Encomiendas en las Islas Filipinas (1591)",
+    "lore": "The Spanish encomendero demands an excessive tribute of gold dust and woven textiles that exceeds the legal tasa. How do you handle the demand?",
+    "choices": [
+      {
+        "text": "Appeal formally through your Christian parish missionary friar to lodge a grievance with the Bishop.",
+        "survival": true
+      },
+      {
+        "text": "Physically attack the encomendero with a farm scythe in front of his soldiers.",
+        "survival": false,
+        "cause": "Hacked down immediately by the encomendero's arquebusiers and display-hung from a mango tree.",
+        "trivia": "Early encomenderos possessed private military authority; armed rebellion against an encomendero resulted in swift retributive executions."
+      },
+      {
+        "text": "Demand to see the encomendero's corporate tax license and threat to audit him.",
+        "survival": false,
+        "cause": "Put in irons as an insolent pagan and worked to death in the gold placer mines.",
+        "trivia": "Ecclesiastical authorities (like Bishop Domingo de Salazar) were often the only legal restraint on abusive encomenderos in the 16th century."
+      }
+    ]
+  },
+  {
+    "id": "q19-night-curfew-patrol",
+    "year": "1878 — Binondo District, Manila",
+    "image": "images/curfew.jpg",
+    "sourceCitation": "Reglamento para el Servicio de Serenos y Guardia Civil Veterana",
+    "lore": "The night watchman (sereno) cries midnight. You are caught on the street without a lantern after the curfew bell. How do you respond?",
+    "choices": [
+      {
+        "text": "Extinguish your light, freeze in place, and calmly surrender to the sereno for identification.",
+        "survival": true
+      },
+      {
+        "text": "Turn on your smartphone flashlight and shine it directly into the night watchman's eyes.",
+        "survival": false,
+        "cause": "Mistaken for a demonic shapeshifter (aswang) bearing hellfire; speared through by the responding night patrol.",
+        "trivia": "Colonial ordinances required anyone moving at night to carry a lit candle or oil lantern; unexplainable blinding lights triggered panic and violence."
+      },
+      {
+        "text": "Run away through the dark alleys to evade questioning.",
+        "survival": false,
+        "cause": "Shot dead by a Guardia Civil Veterana sentry enforcing night anti-banditry regulations.",
+        "trivia": "Sentries had standing orders to fire upon anyone who fled when challenged with '¿Quién vive?' after the final curfew bell."
+      }
+    ]
+  },
+  {
+    "id": "q20-inquisition-denunciation",
+    "year": "1685 — Holy Office Tribunal, Manila",
+    "image": "images/inquisition.jpg",
+    "sourceCitation": "Causa del Comisario del Santo Oficio de Manila",
+    "lore": "A neighbor denounces you to the Inquisitorial Commissioner for muttering unfamiliar words in English and not attending confession. What is your defense?",
+    "choices": [
+      {
+        "text": "Present witnesses affirming your daily participation in the Mass and recite the Creed in Spanish.",
+        "survival": true
+      },
+      {
+        "text": "Explain that you are an agnostic humanist who values science over dogma.",
+        "survival": false,
+        "cause": "Condemned as a relapsed formal heretic; paraded in a sanbenito robe and sentenced to life imprisonment.",
+        "trivia": "Openly professing agnosticism or denying Catholic dogma before the Inquisition resulted in severe canonical penalties and property confiscation."
+      },
+      {
+        "text": "Attempt to educate the tribunal on evolutionary biology and astrophysics.",
+        "survival": false,
+        "cause": "Burned at the stake in an auto-da-fé for unrepentant demonic apostasy.",
+        "trivia": "Challenging core biblical cosmology before ecclesiastical tribunals was treated as direct heresy against church doctrine."
+      }
+    ]
+  },
+  {
+    "id": "q21-tobacco-monopoly",
+    "year": "1840 — Estanco de Tabaco, Cagayan Valley",
+    "image": "images/tobacco.jpg",
+    "sourceCitation": "Reglamento General del Estanco de Tabaco",
+    "lore": "Revenue guards (resguardos) inspect your farm. They discover three unregistered tobacco plants growing behind your garden shed. What do you do?",
+    "choices": [
+      {
+        "text": "Immediately uproot the plants, pay the administrative fine, and pledge all harvest to the monopoly.",
+        "survival": true
+      },
+      {
+        "text": "Roll the tobacco into cigarettes and offer to sell them directly to the guards at wholesale rates.",
+        "survival": false,
+        "cause": "Arrested for contraband trade under the Tobacco Monopoly; sentenced to 10 years hard labor in the Bilibid prison.",
+        "trivia": "The Tobacco Monopoly (1782–1882) strictly prohibited private curing, possession, or sale of tobacco under extreme penalties."
+      },
+      {
+        "text": "Claim the plants are for medical personal use protected under modern herbal regulations.",
+        "survival": false,
+        "cause": "Farm razed to the ground; condemned to penal servitude for illegal plantation cultivation.",
+        "trivia": "No private exceptions existed under the Estanco de Tabaco; unauthorized farming led to land confiscation and corporal punishment."
+      }
+    ]
+  },
+  {
+    "id": "q22-san-juan-del-monte-battle",
+    "year": "1896 — El Polvorín, San Juan del Monte",
+    "image": "images/revolution.jpg",
+    "sourceCitation": "Partes Oficiales de Operaciones Militares (1896)",
+    "lore": "Katipunan forces assault the Spanish powder magazine (El Polvorín). You find yourself trapped in the combat zone as Spanish reinforcements arrive. What do you do?",
+    "choices": [
+      {
+        "text": "Conceal yourself in a drainage culvert without weapons until all gunfire and sweeps cease.",
+        "survival": true
+      },
+      {
+        "text": "Pick up a discarded bolo and charge the Spanish artillery line to join the attack.",
+        "survival": false,
+        "cause": "Cut down by rapid-fire Mauser volleys from arriving Spanish reinforcements at the Battle of Pinaglabanan.",
+        "trivia": "The Battle of San Juan del Monte resulted in catastrophic insurgent casualties due to the firepower advantage of Spanish Mauser rifles."
+      },
+      {
+        "text": "Step into the road shouting for a ceasefire so you can photograph the historical event.",
+        "survival": false,
+        "cause": "Shot dead instantly by Spanish infantry skirmish lines clearing the perimeter.",
+        "trivia": "Spanish troops operated under strict orders to eliminate anyone in the combat theater without uniforms or passes."
+      }
+    ]
+  },
+  {
+    "id": "q23-dagohoy-rebellion",
+    "year": "1744 — Interior Hills, Bohol",
+    "image": "images/dagohoy.jpg",
+    "sourceCitation": "Crónicas de la Rebelión de Dagohoy en Bohol",
+    "lore": "Francisco Dagohoy establishes an independent settlement in the Bohol mountains after a Jesuit priest refuses his brother Christian burial. You are traveling near the rebel lines. How do you proceed?",
+    "choices": [
+      {
+        "text": "Maintain strict neutrality, follow established mountain trails, and state your peaceful travel intent.",
+        "survival": true
+      },
+      {
+        "text": "Wear a Spanish military insignia hoping it will intimidate the mountain sentries.",
+        "survival": false,
+        "cause": "Ambushed and speared by Dagohoy's sentries as a colonial spy for the Spanish authorities.",
+        "trivia": "The Dagohoy Rebellion lasted 85 years; rebel communities ruthlessly hunted anyone bearing Spanish military or administrative marks."
+      },
+      {
+        "text": "Attempt to lecture the rebels on the legal supremacy of Spanish provincial court systems.",
+        "survival": false,
+        "cause": "Executed by the rebel council for colluding with colonial oppressors.",
+        "trivia": "The Bohol rebels formed an autonomous government that rejected all Spanish administrative and religious sovereignty."
+      }
+    ]
+  },
+  {
+    "id": "q24-gomburza-aftermath",
+    "year": "1872 — Bagumbayan Field, Manila",
+    "image": "images/gomburza.jpg",
+    "sourceCitation": "El Proceso de los Padres Gómez, Burgos y Zamora",
+    "lore": "Fathers Gómez, Burgos, and Zamora have just been executed by garrote before thousands of silent onlookers. Spanish cavalry patrols closely monitor the dispersing crowd. How do you leave?",
+    "choices": [
+      {
+        "text": "Keep your head down, maintain utter silence, and walk directly home with the crowd.",
+        "survival": true
+      },
+      {
+        "text": "Start a public chant demanding justice and immediate democratic reforms.",
+        "survival": false,
+        "cause": "Trampled and sabered by Spanish cavalry clearing the execution grounds of agitators.",
+        "trivia": "The atmosphere following the 1872 execution was intensely volatile; any public vocal protest was met with instant military violence."
+      },
+      {
+        "text": "Take notes on paper about the executions to publish an op-ed article.",
+        "survival": false,
+        "cause": "Arrested by undercover secret police (policía secreta) and charged with treasonous sedition.",
+        "trivia": "Writers and journalists documenting political dissent were monitored by colonial secret police and faced immediate exile."
+      }
+    ]
+  },
+  {
+    "id": "q25-final-shift-pact-of-biak-na-bato",
+    "year": "1897 — Biak-na-Bato Caves, Bulacan",
+    "image": "images/biak_na_bato.jpg",
+    "sourceCitation": "Pacto de Biak-na-Bato; Archivo de la Capitanía General",
+    "lore": "The revolutionary leadership signs the Pact of Biak-na-Bato, agreeing to a truce and exile to Hong Kong. Spanish couriers prepare the surrender amnesty lists. How do you finalize your 30th shift?",
+    "choices": [
+      {
+        "text": "Present yourself under the formal amnesty registry, surrender weapons, and complete the time shift.",
+        "survival": true
+      },
+      {
+        "text": "Denounce the truce as a financial sellout and attempt to single-handedly attack the Spanish negotiating team.",
+        "survival": false,
+        "cause": "Shot dead by both revolutionary security and Spanish sentries guarding the truce negotiations.",
+        "trivia": "The Pact of Biak-na-Bato provided conditional amnesty to registered revolutionaries; rogue attackers were eliminated by both sides."
+      },
+      {
+        "text": "Attempt to broker a modern United Nations intervention treaty between both parties.",
+        "survival": false,
+        "cause": "Declared an unhinged spy and executed in the mountain redoubt.",
+        "trivia": "Modern international bodies had no historical counterpart in 1897; unauthorized foreign mediators were treated as spies."
       }
     ]
   }
