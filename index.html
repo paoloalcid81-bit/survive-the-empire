@@ -416,8 +416,11 @@ body {
     let imgHtml = s.image ? `<img class="scenario-image" src="${s.image}" onerror="this.style.display='none'">` : '';
     let sourceHtml = s.sourceCitation ? `<div class="scenario-source">Source: ${s.sourceCitation}</div>` : '';
 
-    // Shuffle the choices array in-place so buttons randomize on every shift
-    s.choices.sort(() => Math.random() - 0.5);
+   // Properly randomize answer positions
+for (let i = s.choices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [s.choices[i], s.choices[j]] = [s.choices[j], s.choices[i]];
+}
 
     let choicesHtml = '';
     s.choices.forEach((choice, idx) => {
