@@ -396,11 +396,7 @@ body {
             [pool[i], pool[j]] = [pool[j], pool[i]];
         }
 
-        shuffledScenarios = [];
-        while (shuffledScenarios.length < 30) {
-            shuffledScenarios.push(...pool);
-        }
-        shuffledScenarios = shuffledScenarios.slice(0, 30);
+       shuffledScenarios = pool.slice(0, 30);
 
         if (typeof gtag === 'function') {
             gtag('event', 'game_start');
