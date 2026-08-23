@@ -520,15 +520,17 @@ clickSound.play().catch(() => {});
         } else {
             bgMusic.pause();
 
+         if (isBgmOn) {
             deathSound.currentTime = 0;
             deathSound.play().catch(() => {});
+            }
             
             if (typeof gtag === 'function') {
                 gtag('event', 'game_death', {
                     'day_died': currentDay + 1,
                     'cause_of_death': selected.cause
                 });
-            }
+         }
             renderDeathScreen(currentDay + 1, selected.cause, selected.trivia, s.sourceCitation);
         }
     }
