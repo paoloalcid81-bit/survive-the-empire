@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Can You Survive 30 Days of Spanish Colonial Life?</title>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N40VPM9JWW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N40VPM9JWW');
+    </script>
+
+    <!-- Open Graph Social Preview -->
     <meta property="og:title" content="Can You Survive 30 Days of Spanish Colonial Life?">
     <meta property="og:description" content="A historical survival trivia game set in Spanish-era Filipinas (1565–1898). Can you survive 30 temporal shifts?">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://paoloalcid81-bit.github.io/survive-the-empire/">
-    <meta property="og:image" content="https://paoloalcid81-bit.github.io/survive-the-empire/images/death-preview.jpg">
+    <meta property="og:url" content="https://survivetheempire.paoloalcid.com/">
+    <meta property="og:image" content="https://survivetheempire.paoloalcid.com/images/death-preview.jpg">
 
     <style>
         :root {
@@ -26,17 +36,18 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-       html, body {
-    background: transparent !important;
-    background-color: transparent !important;
-    color: var(--ink);
-    font-family: 'Georgia', 'Times New Roman', serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 0;
-    margin: 0;
-}
+        html, body {
+            background: transparent !important;
+            background-color: transparent !important;
+            color: var(--ink);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
 
         .game-wrapper {
             background-color: var(--parchment-card);
@@ -46,6 +57,7 @@
             width: 100%;
             max-width: 580px;
             padding: 1.25rem;
+            margin: 10px auto;
         }
 
         .top-nav {
@@ -313,14 +325,13 @@
 </div>
 
 <script>
-    const BASE_GAME_URL = "https://paoloalcid81-bit.github.io/survive-the-empire/";
+    const BASE_GAME_URL = "https://survivetheempire.paoloalcid.com/";
 
     let SCENARIO_DATABASE = [];
     let currentDay = 0;
     let shuffledScenarios = [];
     let isBgmOn = false;
 
-    // Load external questions from scenarios.json
     async function loadScenarios() {
         try {
             const res = await fetch('scenarios.json');
@@ -359,7 +370,6 @@
 
     function startNewGame() {
         currentDay = 0;
-        // Shuffle & fill 30 days
         let pool = [...SCENARIO_DATABASE];
         for (let i = pool.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -371,6 +381,11 @@
             shuffledScenarios.push(...pool);
         }
         shuffledScenarios = shuffledScenarios.slice(0, 30);
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'game_start');
+        }
+
         renderScenario();
     }
 
@@ -411,14 +426,34 @@
         const s = shuffledScenarios[currentDay];
         const selected = s.choices[index];
 
+        // GA4 Telemetry
+        if (typeof gtag === 'function') {
+            gtag('event', 'scenario_answered', {
+                'scenario_id': s.id || `shift-${currentDay + 1}`,
+                'scenario_year': s.year,
+                'choice_text': selected.text.substring(0, 40),
+                'survived': selected.survival ? 'yes' : 'no',
+                'day_number': currentDay + 1
+            });
+        }
+
         if (selected.survival) {
             currentDay++;
             if (currentDay >= 30) {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'game_won');
+                }
                 renderVictoryScreen();
             } else {
                 renderScenario();
             }
         } else {
+            if (typeof gtag === 'function') {
+                gtag('event', 'game_death', {
+                    'day_died': currentDay + 1,
+                    'cause_of_death': selected.cause
+                });
+            }
             renderDeathScreen(currentDay + 1, selected.cause, selected.trivia, s.sourceCitation);
         }
     }
