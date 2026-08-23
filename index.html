@@ -410,38 +410,40 @@ body {
     }
 
     function renderScenario() {
-        const container = document.getElementById('game-content');
-        const s = shuffledScenarios[currentDay];
-        
-        let imgHtml = s.image ? `<img class="scenario-image" src="${s.image}" onerror="this.style.display='none'">` : '';
-        let sourceHtml = s.sourceCitation ? `<div class="scenario-source">Source: ${s.sourceCitation}</div>` : '';
+    const container = document.getElementById('game-content');
+    const s = shuffledScenarios[currentDay];
 
-        let choicesHtml = '';
-        s.choices.forEach((choice, idx) => {
-            choicesHtml += `
-                <button class="choice-btn" onclick="handleChoice(${idx})">
-                    ${choice.text}
-                </button>
-            `;
-        });
+    let imgHtml = s.image ? `<img class="scenario-image" src="${s.image}" onerror="this.style.display='none'">` : '';
+    let sourceHtml = s.sourceCitation ? `<div class="scenario-source">Source: ${s.sourceCitation}</div>` : '';
 
-        container.innerHTML = `
-            <div class="status-bar">
-                <span>Shift: Day ${currentDay + 1} of 30</span>
-                <span>Status: Alive</span>
-            </div>
-            <div class="scenario-box">
-                <div class="scenario-year">${s.year}</div>
-                ${imgHtml}
-                <div>${s.lore}</div>
-                ${sourceHtml}
-            </div>
-            <div class="choices-grid">
-                ${choicesHtml}
-            </div>
+    // Shuffle the choices array in-place so buttons randomize on every shift
+    s.choices.sort(() => Math.random() - 0.5);
+
+    let choicesHtml = '';
+    s.choices.forEach((choice, idx) => {
+        choicesHtml += `
+            <button class="choice-btn" onclick="handleChoice(${idx})">
+                ${choice.text}
+            </button>
         `;
-    }
+    });
 
+    container.innerHTML = `
+        <div class="status-bar">
+            <span>Shift: Day ${currentDay + 1} of 30</span>
+            <span>Status: Alive</span>
+        </div>
+        <div class="scenario-box">
+            <div class="scenario-year">${s.year}</div>
+            ${imgHtml}
+            <div>${s.lore}</div>
+            ${sourceHtml}
+        </div>
+        <div class="choices-grid">
+            ${choicesHtml}
+        </div>
+    `;
+}
     function handleChoice(index) {
         const s = shuffledScenarios[currentDay];
         const selected = s.choices[index];
