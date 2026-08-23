@@ -405,12 +405,15 @@ function toggleBGM() {
             <span class="intro-challenge">Can you survive 30 time shifts and return to the present day?</span>
         </div>
         <div style="margin-top: auto; padding-top: 1rem;">
-            <button class="action-btn" onclick="startNewGame()">Enter the Shift</button>
+            <button class="action-btn" onclick="startNewGame()">Play</button>
         </div>
     `;
 }
 
     function startNewGame() {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+        
         currentDay = 0;
         let pool = [...SCENARIO_DATABASE];
         for (let i = pool.length - 1; i > 0; i--) {
