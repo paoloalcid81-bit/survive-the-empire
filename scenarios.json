@@ -1,0 +1,78 @@
+[
+  {
+    "id": "1849-claveria-decree",
+    "year": "1849 — Provincial Registry, Ilocos",
+    "image": "images/claveria.jpg",
+    "sourceCitation": "Catálogo Alfabético de Apellidos (1849), Archivo Histórico Nacional",
+    "lore": "Governor-General Narciso Clavería y Zaldúa issues a decree standardizing native surnames. You are summoned by the Cabeza de Barangay to register your household tribute list.",
+    "choices": [
+      {
+        "text": "Insist on retaining your pre-colonial ancestral patronym without Christian catalog names.",
+        "survival": false,
+        "cause": "Sentenced to hard labor in the Cavite naval arsenals for civil insubordination.",
+        "trivia": "The 1849 decree strictly enforced cataloged names to prevent polo labor evasion and fix tribute registers."
+      },
+      {
+        "text": "Accept an assigned surname from the catalog and register your household tribute list.",
+        "survival": true
+      }
+    ]
+  },
+  {
+    "id": "1882-cholera-manila",
+    "year": "1882 — Manila Epidemic Cordons",
+    "image": "images/cholera.jpg",
+    "sourceCitation": "Gaceta de Manila (1882); Archivo de la Real Audiencia",
+    "lore": "Asiatic cholera sweeps through Tondo. Spanish health authorities place armed cordons around your arrabal, forbidding movement beyond parish borders.",
+    "choices": [
+      {
+        "text": "Attempt to sneak across the Pasig River barricade after evening curfew.",
+        "survival": false,
+        "cause": "Shot on sight by the Guardia Civil enforcing the sanitary cordon.",
+        "trivia": "During the 1882 epidemic, armed patrols strictly enforced lethal quarantine boundaries around Manila parishes."
+      },
+      {
+        "text": "Boil river water, respect the curfew, and remain inside the cordoned parish boundary.",
+        "survival": true
+      }
+    ]
+  },
+  {
+    "id": "1834-manila-port",
+    "year": "1834 — Opening of the Port of Manila",
+    "image": "images/port_manila.jpg",
+    "sourceCitation": "Real Decreto de 1834; Records of the Real Aduana",
+    "lore": "Royal decree opens Manila to international commerce. Foreign merchants establish trading houses outside the Intramuros walls. A British trading clerk offers you an unvetted currency exchange.",
+    "choices": [
+      {
+        "text": "Conduct unauthorized coin arbitrage outside the supervision of the Real Aduana.",
+        "survival": false,
+        "cause": "Arrested for illegal currency speculation and sentenced to penal servitude in Guam.",
+        "trivia": "The Royal Customs (Real Aduana) heavily regulated all bullion and foreign trade transactions under penalty of exile."
+      },
+      {
+        "text": "Conduct transactions strictly in official Silver Pesos through certified brokers.",
+        "survival": true
+      }
+    ]
+  },
+  {
+    "id": "1896-balintawak-martial-law",
+    "year": "1896 — Cry of Balintawak & Martial Law",
+    "image": "images/martial_law.jpg",
+    "sourceCitation": "Bando de Guerra del Gobernador General Blanco (Agosto 1896)",
+    "lore": "Governor-General Ramón Blanco proclaims martial law over eight provinces. Guardia Civil patrols conduct warrantless searches for Katipunan membership papers.",
+    "choices": [
+      {
+        "text": "Keep unregistered Masonic pamphlets and handwritten cipher sheets in your wooden chest.",
+        "survival": false,
+        "cause": "Summarily convicted of treason and executed by firing squad at Bagumbayan.",
+        "trivia": "Suspected subversives caught with illicit pamphlets faced immediate military tribunal and execution in 1896."
+      },
+      {
+        "text": "Destroy suspicious private correspondences and ensure your Cédula Personal is stamped.",
+        "survival": true
+      }
+    ]
+  }
+]
