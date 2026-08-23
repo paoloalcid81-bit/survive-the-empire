@@ -623,5 +623,130 @@
         "trivia": "Modern international bodies had no historical counterpart in 1897; unauthorized foreign mediators were treated as spies."
       }
     ]
+  },
+    {
+    "id": "q26-hydrophobia",
+    "year": "1847 — Provincial Pueblo, Luzon",
+    "image": "images/rabies.jpg",
+    "sourceCitation": "Historical treatment of hydrophobia before Pasteur's rabies vaccine (1885)",
+    "lore": "A stray dog behaving strangely bites you deeply on the leg before disappearing. A neighbor warns that the animal may be suffering from hydrophobia. What do you do?",
+    "choices": [
+      {
+        "text": "Go to confession and receive penance in case the illness proves fatal.",
+        "survival": false,
+        "cause": "The bite heals. Weeks later, fever and agitation begin, followed by agonizing spasms whenever you attempt to drink. Your penance prepared your soul, but not your body. You die of hydrophobia.",
+        "trivia": "Rabies was commonly called hydrophobia because victims developed painful spasms when attempting to swallow liquids. Before Pasteur's rabies vaccine in 1885, there was no reliable cure once symptoms appeared."
+      },
+      {
+        "text": "Go immediately to the nearest physician and have the wound cleaned and cauterized with a hot iron.",
+        "survival": true
+      },
+      {
+        "text": "Wash the wound thoroughly and dress it with boiled guava leaves to prevent infection.",
+        "survival": false,
+        "cause": "The wound heals cleanly, but the unseen disease does not. Weeks later, you develop violent throat spasms and hydrophobia. Once the symptoms appear, nothing available in 1847 can save you.",
+        "trivia": "Traditional wound treatments could address the injury itself, but they could not reliably prevent rabies. Physicians before Pasteur sometimes attempted immediate cleansing, excision, or cauterization of suspicious animal bites."
+      }
+    ]
+  },
+  {
+    "id": "q27-tooth-infection",
+    "year": "1871 — Provincial Pueblo, Pampanga",
+    "image": "images/toothache.jpg",
+    "sourceCitation": "History of dentistry before modern antibiotics",
+    "lore": "A tooth that has been aching for days is now badly swollen. Your cheek is hot, the pain is spreading into your jaw, and you are beginning to feel feverish. What do you do?",
+    "choices": [
+      {
+        "text": "Have the infected tooth pulled as soon as possible.",
+        "survival": true
+      },
+      {
+        "text": "Go to the botica and ask for antibiotics.",
+        "survival": false,
+        "cause": "The boticario has no idea what medicine you are asking for. While you search for antibiotics that will not exist for decades, the infection spreads through your jaw and neck. You die from the uncontrolled infection.",
+        "trivia": "Antibiotics did not exist in 1871. Penicillin was discovered by Alexander Fleming in 1928, and effective antibiotic treatment became widely available much later."
+      },
+      {
+        "text": "Chew betel nut and drink lambanog to dull the pain until the swelling goes down.",
+        "survival": false,
+        "cause": "The pain becomes easier to tolerate. The infection does not. It spreads beyond the tooth and into the surrounding tissues until fever and swelling overwhelm you.",
+        "trivia": "Before antibiotics, relieving dental pain did not eliminate the source of a serious tooth infection. Extraction and drainage were among the limited ways of removing the source of infection."
+      }
+    ]
+  },
+  {
+    "id": "q28-before-nightfall",
+    "year": "1856 — Provincial Luzon",
+    "image": "images/provincial_road.jpg",
+    "sourceCitation": "Nineteenth-century provincial travel and banditry in the Philippines",
+    "lore": "You must reach the next pueblo before nightfall. Locals warn that tulisanes have recently been attacking travelers after dark. You have no watch. When do you leave?",
+    "choices": [
+      {
+        "text": "At midday. There should still be several hours of daylight.",
+        "survival": false,
+        "cause": "You badly underestimate the journey by carabao. Darkness falls while you are still far from the next pueblo. Tulisanes find you on the road. Your carabao returns alone the following morning. You are never seen again.",
+        "trivia": "Travel between pueblos could take hours over difficult provincial roads. Without modern transportation or personal timekeeping, daylight and communal signals such as church bells were important guides for travelers."
+      },
+      {
+        "text": "Immediately after the morning church bells.",
+        "survival": true
+      },
+      {
+        "text": "In the early afternoon, when the heat begins to ease.",
+        "survival": false,
+        "cause": "The cooler journey is considerably more pleasant. It is also your last. Night falls before you reach the pueblo. Your carabao is found wandering along the road the next morning. You are never seen again.",
+        "trivia": "Tulisanes and other bandit groups were a persistent problem on isolated provincial roads during the nineteenth century, making travel after dark considerably more dangerous."
+      }
+    ]
+  },
+  {
+    "id": "q29-pasig-bath",
+    "year": "1867 — Pasig River, Manila",
+    "image": "images/pasig_river.jpg",
+    "sourceCitation": "Historical accounts of the Pasig River and nineteenth-century Manila",
+    "lore": "The afternoon heat is unbearable. The Pasig River looks remarkably clean compared with the river you remember from the present day. You need a bath. What do you do?",
+    "choices": [
+      {
+        "text": "Jump into the Pasig and enjoy the surprisingly clean water.",
+        "survival": false,
+        "cause": "You have sufficiently fed a crocodile.",
+        "trivia": "Crocodiles historically inhabited Philippine rivers and waterways, including waterways around Manila. A cleaner-looking nineteenth-century river was not necessarily a harmless place for recreational swimming."
+      },
+      {
+        "text": "Draw water from a well and bathe at home.",
+        "survival": true
+      },
+      {
+        "text": "Go farther upstream, away from the crowded city, and bathe where the current is stronger.",
+        "survival": false,
+        "cause": "The current is considerably stronger than it looks. You are swept downstream and drown before anyone can reach you.",
+        "trivia": "The Pasig was an important transportation and everyday-use waterway. River conditions, currents, boats, and wildlife created hazards that a modern visitor could easily underestimate."
+      }
+    ]
+  },
+  {
+    "id": "q30-fraylology",
+    "year": "1887 — Provincial Pueblo, Luzon",
+    "image": "images/friar.jpg",
+    "sourceCitation": "Late Spanish colonial accounts of parish friars and municipal politics",
+    "lore": "The parish friar invites you to dine at the convento. During dinner, he begins complaining bitterly about the gobernadorcillo and asks what you think of him. What do you do?",
+    "choices": [
+      {
+        "text": "Agree enthusiastically and tell the friar everything you have heard about the gobernadorcillo.",
+        "survival": false,
+        "cause": "By morning, the gobernadorcillo has somehow heard every word you said. You discover too late that becoming involved in a feud between the pueblo's two most powerful men was not an effective survival strategy.",
+        "trivia": "Parish friars could exercise substantial influence in local political and social affairs, while municipal officials possessed their own networks of allies and dependents. Navigating those relationships required considerable caution."
+      },
+      {
+        "text": "Politely avoid taking sides and redirect the conversation to something harmless.",
+        "survival": true
+      },
+      {
+        "text": "Defend the gobernadorcillo and explain that matters of government should remain separate from the Church.",
+        "survival": false,
+        "cause": "You have successfully explained the separation of Church and State to the friar. At the garrote, you learn fraylology.",
+        "trivia": "Fraylology was a satirical way of describing the practical art of understanding and navigating the influence, personalities, and politics of the Spanish friars in colonial Philippine society."
+      }
+    ]
   }
 ]
