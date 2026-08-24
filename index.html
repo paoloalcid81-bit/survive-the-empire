@@ -337,7 +337,7 @@ body {
 <div class="game-wrapper">
     <div class="top-nav">
         <button class="top-nav-btn" onclick="goHome()">⌂ Home</button>
-        <button class="top-nav-btn" id="music-toggle" onclick="toggleBGM()">Music: ON</button>
+        <button class="top-nav-btn" onclick="openSettings()">⚙ Settings</button>
     </div>
 
     <div class="header-tag">Survive the Empire</div>
@@ -355,6 +355,30 @@ body {
         <button class="share-btn share-wa" onclick="shareGeneral('wa')">WhatsApp</button>
         <button class="share-btn share-copy" onclick="shareGeneral('copy')">Copy</button>
     </div>
+    <div id="settings-panel" style="display:none;">
+    <div class="death-certificate">
+        <div class="cert-header">Settings</div>
+        <hr class="cert-divider">
+
+        <div class="cert-body" style="text-align:center;">
+            <p><strong>Music</strong></p>
+
+            <button
+                class="action-btn"
+                id="settings-music-toggle"
+                onclick="toggleBGM()"
+                style="margin-top:0.75rem;"
+            >
+                Music: ON
+            </button>
+        </div>
+
+        <hr class="cert-divider">
+
+        <button class="action-btn" onclick="closeSettings()">Close</button>
+    </div>
+</div>
+    
 </div>
 
 <script>
@@ -394,10 +418,12 @@ body {
     }
 
 function toggleBGM() {
-    const btn = document.getElementById('music-toggle');
+    const btn = document.getElementById('settings-music-toggle');
 
     if (isBgmOn) {
         bgMusic.pause();
+        deathSound.pause();
+        deathSound.currentTime = 0;
         isBgmOn = false;
         btn.innerText = 'Music: OFF';
     } else {
@@ -411,6 +437,21 @@ function toggleBGM() {
                 alert('Music could not be loaded.');
             });
     }
+}
+
+    function openSettings() {
+    document.getElementById('game-content').style.display = 'none';
+    document.querySelector('.footer-share-section').style.display = 'none';
+    document.getElementById('settings-panel').style.display = 'block';
+
+    const btn = document.getElementById('settings-music-toggle');
+    btn.innerText = isBgmOn ? 'Music: ON' : 'Music: OFF';
+}
+
+    function closeSettings() {
+    document.getElementById('settings-panel').style.display = 'none';
+    document.getElementById('game-content').style.display = 'flex';
+    document.querySelector('.footer-share-section').style.display = 'flex';
 }
     
     function goHome() {
