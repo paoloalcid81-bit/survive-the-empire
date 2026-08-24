@@ -147,6 +147,21 @@ body {
             text-transform: uppercase;
         }
 
+        .day-counter {
+            display: inline-block;
+        }
+
+        .day-counter.day-advance {
+            color: var(--green);
+            animation: dayPulse 0.6s ease;
+        }
+
+@keyframes dayPulse {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
         .scenario-box {
             background: rgba(238, 227, 208, 0.35);
             border-left: 3px solid var(--border);
@@ -468,7 +483,7 @@ for (let i = s.choices.length - 1; i > 0; i--) {
 
     container.innerHTML = `
         <div class="status-bar">
-            <span>Shift: Day ${currentDay + 1} of 30</span>
+            <span class="day-counter">Day ${currentDay + 1} of 30</span>
             <span>Status: Alive</span>
         </div>
         <div class="scenario-box">
@@ -516,6 +531,11 @@ clickSound.play().catch(() => {});
                 renderVictoryScreen();
             } else {
                 renderScenario();
+
+            const counter = document.querySelector('.day-counter');
+            if (counter) {
+                counter.classList.add('day-advance');
+                }
             }
         } else {
             bgMusic.pause();
