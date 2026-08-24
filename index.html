@@ -322,7 +322,7 @@ body {
 <div class="game-wrapper">
     <div class="top-nav">
         <button class="top-nav-btn" onclick="goHome()">⌂ Home</button>
-        <button class="top-nav-btn" id="music-toggle" onclick="toggleBGM()">Music: OFF</button>
+        <button class="top-nav-btn" id="music-toggle" onclick="toggleBGM()">Music: ON</button>
     </div>
 
     <div class="header-tag">Survive the Empire</div>
@@ -348,7 +348,7 @@ body {
     let SCENARIO_DATABASE = [];
     let currentDay = 0;
     let shuffledScenarios = [];
-    let isBgmOn = false;
+    let isBgmOn = true;
 
     const bgMusic = new Audio('sonican-spanish-guitar-30-seconds-latin-cinematic-515434.mp3');
     bgMusic.loop = true;
